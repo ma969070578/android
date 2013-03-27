@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Aline!</string>
+    <string name="app_name">一线牵</string>
+    <string name="tag_hint">Tag为大小写字母，数字，下划线,中文， 多个用以逗号分隔</string>
+    <string name="alias_hint">Alias为大小写字母，数字，下划线</string>
+    <string name="style_hint">style为数字</string>
+    <string name="error_style_empty">style不能为空</string>
+    <string name="error_alias_empty">alias不能为空</string>
+    <string name="error_tag_empty">tag不能为空</string>
+    <string name="error_tag_gs_empty">格式不对</string>
+    <string name="error_network">网络连接异常,初始化失败 请检查网络！</string>
+    <string name="logining">程序在后台执行, 请查看日志！</string>
+    <string name="setting_su">设置成功</string>
+    
+   
+    <string name="myMap_quit">退出地图</string>
+    <string name="myMap_about">关于地图</string>
+
+    
+      <string name="referesh">刷新</string>
+    <string name="search">查找好友</string>
+    
+        <string name="main_home">首页</string>
+    <string name="main_news">信息</string>
+    <string name="main_my_info">我的资料</string>
+    <string name="menu_search">搜索</string>
+    <string name="more">更多</string>
+</resources>

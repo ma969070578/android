@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <style name="push_style">
+		<item name="android:hint">@string/style_hint</item>
+		<item name="android:inputType">number</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+	<style name="push_alias">
+		<item name="android:hint">@string/alias_hint</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+	<style name="push_tag">
+		<item name="android:hint">@string/tag_hint</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+	
+	<style name="main_tab_bottom">
+	<item name="android:textSize">@dimen/bottom_tab_font_size</item>
+    <item name="android:textColor">#ffffffff</item>
+    <!--  内容加长变为....-->
+    <item name="android:ellipsize">marquee</item>
+    <item name="android:gravity">center_horizontal</item>
+    <item name="android:background">@drawable/home_btn_bg</item>
+    <item name="android:paddingTop">@dimen/bottom_tab_padding_up</item>
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:button">@null</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:drawablePadding">@dimen/bottom_tab_padding_drawable</item>
+    <item name="android:layout_weight">1.0</item>
+</style>
+</resources>
