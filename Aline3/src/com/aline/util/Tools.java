@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -39,7 +41,9 @@ public class Tools {
 	public static String  driverpwd="111";
 	public static final String HOST = "dj.95081.com";
 	
-	
+	public static ExecutorService executorService = Executors
+	.newCachedThreadPool();
+
 	
 	public static void recomment(final Activity a,
 			final App app) {

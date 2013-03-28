@@ -29,7 +29,10 @@ public class App extends Application {
 	public String userid;
 
 	public static App mApp;
-
+	public boolean isAutoUpate = false;
+	public boolean isLocation=false;
+	public boolean isStartCheckUpdata=false;
+	
 	@Override
 	public void onCreate() {
 

@@ -6,7 +6,7 @@
     android:background="#000000" >
 
     <!-- 自定义滑动控件 -->
-    <com.aline.activity.ScrollLayout
+    <com.aline.ui.ScrollLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ScrollLayout"
         android:layout_width="fill_parent"
@@ -72,7 +72,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
         </RelativeLayout>
-    </com.aline.activity.ScrollLayout>
+    </com.aline.ui.ScrollLayout>
 	
     <!-- 这个布局是下面显示的小圆点的布局，其中ImageView的数量要与上面RelativeLayout的数量对应 -->
     <LinearLayout

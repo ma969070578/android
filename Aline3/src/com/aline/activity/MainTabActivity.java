@@ -25,7 +25,7 @@ public class MainTabActivity extends TabActivity implements OnCheckedChangeListe
         mainTab.setOnCheckedChangeListener(this);
         tabhost = getTabHost();
         
-        iHome = new Intent(this, HomeActivity.class);
+        iHome = new Intent(this, BMapActivity.class);
         tabhost.addTab(tabhost.newTabSpec("iHome")
         		.setIndicator(getResources().getString(R.string.main_home), getResources().getDrawable(R.drawable.icon_1_n))
         		.setContent(iHome));

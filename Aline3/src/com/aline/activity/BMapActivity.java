@@ -24,7 +24,7 @@ import com.baidu.mapapi.MapController;
 import com.baidu.mapapi.MapView;
 import com.baidu.mapapi.MyLocationOverlay;
 
-public class MainBMapActivity extends MapActivity {
+public class BMapActivity extends MapActivity {
     /** Called when the activity is first created. */
 	private MapView mapView;//百度地图控件
 	private BMapManager bMapManager;//百度地图的引擎
@@ -45,14 +45,14 @@ public class MainBMapActivity extends MapActivity {
         
         
         mapView = (MapView)findViewById(R.id.bmapView);
-        bMapManager = new BMapManager(MainBMapActivity.this);
+        bMapManager = new BMapManager(BMapActivity.this);
         //必须加载Key
         bMapManager.init(Key, new MKGeneralListener() {
 			
 			public void onGetPermissionState(int arg0) {
 				// TODO Auto-generated method stub
 				if(arg0 == 300){
-					Toast.makeText(MainBMapActivity.this, "输入的Key有错", 1).show();
+					Toast.makeText(BMapActivity.this, "输入的Key有错", 1).show();
 				}
 			}
 			
@@ -189,7 +189,7 @@ public class MainBMapActivity extends MapActivity {
 
 		if (item.getItemId()== R.id.referesh){
 			 Intent intent = new Intent();                 
-			 intent.setClass(MainBMapActivity.this, ScrollLayoutActivity.class);
+			 intent.setClass(BMapActivity.this, ScrollLayoutActivity.class);
 			 startActivity(intent);               
 			 finish();
 			 return true;
