@@ -1,6 +1,5 @@
 package com.aline.activity;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,10 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.aline.app.App;
+import com.aline.ui.OnViewChangeListener;
 import com.aline.ui.ScrollLayout;
 import com.aline.util.Tools;
-
-
 //http://blog.csdn.net/tangren03/article/details/7752468
 public class ScrollLayoutActivity extends Activity implements OnViewChangeListener{
    
@@ -39,14 +37,14 @@ public class ScrollLayoutActivity extends Activity implements OnViewChangeListen
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mApp =(App) this.getApplication();
-		if(Tools.readFlag(ScrollLayoutActivity.this)!="1"){
+		if(Tools.readFlag(ScrollLayoutActivity.this)=="1"){
 			setContentView(R.layout.main);
 			System.out.println("1111111111");
 			initView();
 		}
 		else{
 			Intent intent=new Intent();
-			intent.setClass(ScrollLayoutActivity.this, MainTabActivity.class);
+			intent.setClass(ScrollLayoutActivity.this, Sample_baiduActivity.class);
 			Tools.writeFlag("1", this);
 			mApp.userKey=Tools.getUserKey(this);
 			startActivity(intent);
@@ -72,7 +70,7 @@ public class ScrollLayoutActivity extends Activity implements OnViewChangeListen
 		}
 		currentItem = 0;
 		imgs[currentItem].setEnabled(false);
-		mScrollLayout.SetOnViewChangeListener((com.aline.ui.OnViewChangeListener) this);
+		mScrollLayout.SetOnViewChangeListener(this);
 	}
 
 	private View.OnClickListener onClick = new View.OnClickListener() {
