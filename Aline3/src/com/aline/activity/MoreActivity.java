@@ -91,7 +91,7 @@ public class MoreActivity extends Activity {
 					AutoUpdater.CheckForUpdate( MoreActivity.this,false);
 				}
 		
-				else if (arg2 == 4) {
+				else if (arg2 == 3) {
 					Intent intent2 = new Intent();
 					intent2.setClass( MoreActivity.this,  InfosActivity.class);
 					startActivity(intent2);
@@ -113,29 +113,29 @@ public class MoreActivity extends Activity {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("text", getResources().getString(R.string.main_home));
-		map.put("img", R.drawable.icon);
+		map.put("img", R.drawable.dog_robot);
 		map_list1.add(map);
 
 		map = new HashMap<String, Object>();
 		map.put("text", getResources().getString(R.string.main_home));
-		map.put("img", R.drawable.icon);
+		map.put("img", R.drawable.insect_robot);
 		map_list1.add(map);
 
 		
 		map = new HashMap<String, Object>();
 		map.put("text", getResources().getString(R.string.main_home));
-		map.put("img", R.drawable.icon);
+		map.put("img", R.drawable.scorpio_robot);
 		map_list1.add(map);
 		
 		
 		map = new HashMap<String, Object>();
 		map.put("text", getResources().getString(R.string.main_home));
-		map.put("img", R.drawable.icon);
+		map.put("img", R.drawable.paranoid_android);
 		map_list1.add(map);
 		
 		map = new HashMap<String, Object>();
 		map.put("text", getResources().getString(R.string.main_home));
-		map.put("img", R.drawable.icon);
+		map.put("img", R.drawable.spider_robot);
 		map_list1.add(map);
 		
 		
