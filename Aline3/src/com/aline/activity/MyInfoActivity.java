@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MyInfoActivity extends Activity {
+	private String msg;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +20,9 @@ public class MyInfoActivity extends Activity {
 		EditText editText=(EditText)this.findViewById(R.id.mymsg);
 		Button	 subBtn=(Button)this.findViewById(R.id.button1);
 		
-		final String msg=editText.getText().toString();
-		
+//		msg=editText.getText().toString();
+	    msg = "{\"icon\":\"来点外卖\",\"n_content\":\"你好\"}";
+	    
 		subBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override

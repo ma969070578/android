@@ -30,7 +30,7 @@ public class MainTabActivity extends TabActivity implements OnCheckedChangeListe
         		.setIndicator(getResources().getString(R.string.main_home), getResources().getDrawable(R.drawable.icon_1_n))
         		.setContent(iHome));
         
-		iNews = new Intent(this, ScrollLayoutActivity.class);
+		iNews = new Intent(this, NewsActivity.class);
 		tabhost.addTab(tabhost.newTabSpec("iNews")
 	        	.setIndicator(getResources().getString(R.string.main_news), getResources().getDrawable(R.drawable.icon_2_n))
 	        	.setContent(iNews));
