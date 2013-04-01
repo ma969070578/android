@@ -13,7 +13,7 @@
     <string name="logining">程序在后台执行, 请查看日志！</string>
     <string name="setting_su">设置成功</string>
     
-   <string name="title">11</string>
+   <string name="title">一线牵</string>
     <string name="myMap_quit">退出地图</string>
     <string name="myMap_about">关于地图</string>
 
@@ -63,4 +63,13 @@
     
      <string name="update">update.jsp</string>
     <string name="revision">1.00</string>
+    
+    <string name="introduce">一线牵，心系你我，心系万千</string>
+    
+    <string name="show_web">网址：</string>
+    <string name="web">www.baidu.com</string>
+     <string name="show_email">邮箱：</string>
+    <string name="email">ma969070578@126.com</string>
+    <string name="showblog">新浪微博：</string>
+    <string name="blog"> http://weibo.com/1661932913</string>
 </resources>

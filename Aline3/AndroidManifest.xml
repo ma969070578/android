@@ -36,6 +36,10 @@
          <activity 
         	android:name=".MyInfoActivity"
         	android:theme="@android:style/Theme.NoTitleBar"/>
+         
+         <activity 
+        	android:name=".InfosActivity"
+        	android:theme="@android:style/Theme.NoTitleBar"/>
          <activity 
         	android:name=".SearchActivity"
         	android:theme="@android:style/Theme.NoTitleBar"/>
