@@ -28,6 +28,9 @@
     <string name="more">更多</string>
     <string name="quit">退出</string>
     <string name="infos">关于</string>
+      <string name="submit">提交</string>
+    
+    
     <string name="back">返回</string>
     <string name="portal">重新定位</string>
     <string name="tologin">重新登录</string>
@@ -36,6 +39,27 @@
        <string name="updatadialog_title">系统更新</string>
     <string name="updata_ok">立即更新</string>
     <string name="updata_cannel">下次再说</string>
+    
+    
+    <string name="howuse">使用指南</string>
+     <string name="feedback">意见反馈</string>
+    <string name="checkupdate">检查更新</string>
+    <string name="aboutus">关于我们</string>
+    <string name="hotrecommend">推荐应用</string>
+    <string name="feedbackcommont">请在此输入您的宝贵建议！</string>
+    <string name="thankcommont">提交成功，感谢您的反馈，我们会尽快处理！</string>
+    <string name="main_more">更多</string>
+    <string name="yourname">请填写您的姓名</string>
+    <string name="yourphone">请填写您的手机号</string>
+    <string name="youremail">请填写您的常用邮箱</string>
+    <string name="writeyouremail">您所反映问题的处理结果将及时发送到此邮箱</string>
+    <string name="writeyourfeedback">清晰详细的描述有助于快速解决您的问题</string>
+    <string name="thankfor">您的意见将帮助我们改进产品和服务</string>
+    <string name="textmore">还可以输入200个字</string>
+    <string name="recentuse">最近浏览记录</string>
+    <string name="caresinablog">关注新浪微博</string>
+    <string name="caresinablog95081">关注95081新浪微博</string>
+    <string name="sendtofriends">发送给好友</string>
     
      <string name="update">update.jsp</string>
     <string name="revision">1.00</string>

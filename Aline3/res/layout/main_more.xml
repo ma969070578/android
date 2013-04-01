@@ -5,7 +5,7 @@
    android:background="@color/white"
     android:orientation="vertical" >
 
-    <include layout="@layout/title_publi"/>
+    <include layout="@layout/title_public"/>
 
   <ScrollView
         android:layout_width="fill_parent"

@@ -41,6 +41,11 @@ public class Tools {
 	public static String  driverpwd="111";
 	public static final String HOST = "dj.95081.com";
 	
+	
+	public static final String  pushusername="ma969070578@126.com";
+	public static final String  pushpasswd = "123456";
+	public static final String  AppKey="59219778be8585b98c730b8";
+
 	public static ExecutorService executorService = Executors
 	.newCachedThreadPool();
 

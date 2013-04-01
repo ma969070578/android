@@ -112,32 +112,30 @@ public class MoreActivity extends Activity {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		map.put("text", getResources().getString(R.string.main_home));
+		map.put("text", getResources().getString(R.string.howuse));
 		map.put("img", R.drawable.dog_robot);
 		map_list1.add(map);
 
 		map = new HashMap<String, Object>();
-		map.put("text", getResources().getString(R.string.main_home));
+		map.put("text", getResources().getString(R.string.feedback));
 		map.put("img", R.drawable.insect_robot);
 		map_list1.add(map);
 
-		
 		map = new HashMap<String, Object>();
-		map.put("text", getResources().getString(R.string.main_home));
+		map.put("text", getResources().getString(R.string.checkupdate));
 		map.put("img", R.drawable.scorpio_robot);
 		map_list1.add(map);
 		
-		
 		map = new HashMap<String, Object>();
-		map.put("text", getResources().getString(R.string.main_home));
+		map.put("text", getResources().getString(R.string.aboutus));
 		map.put("img", R.drawable.paranoid_android);
 		map_list1.add(map);
 		
+		
 		map = new HashMap<String, Object>();
-		map.put("text", getResources().getString(R.string.main_home));
+		map.put("text", getResources().getString(R.string.sendtofriends));
 		map.put("img", R.drawable.spider_robot);
 		map_list1.add(map);
-		
 		
 		return map_list1;
 	}
