@@ -64,7 +64,10 @@
      <string name="update">update.jsp</string>
     <string name="revision">1.00</string>
     
-    <string name="introduce">一线牵，心系你我，心系万千</string>
+    <string name="introduce">
+       \n一线牵是由某某出品的用于某某的一个某某功能的软件
+       \n一线牵能够***************
+       \n关爱家人 ，关心你我 </string>
     
     <string name="show_web">网址：</string>
     <string name="web">www.baidu.com</string>
@@ -72,4 +75,6 @@
     <string name="email">ma969070578@126.com</string>
     <string name="showblog">新浪微博：</string>
     <string name="blog"> http://weibo.com/1661932913</string>
+     <string name="sms">一线牵，心系你我，心系万千,下载地址****</string>
+
 </resources>

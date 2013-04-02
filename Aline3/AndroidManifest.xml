@@ -24,6 +24,7 @@
         </activity>
         
         
+        
          <activity 
         	android:name=".BMapActivity"
         	android:theme="@android:style/Theme.NoTitleBar"/>
@@ -35,6 +36,9 @@
         	android:theme="@android:style/Theme.NoTitleBar"/>
          <activity 
         	android:name=".MyInfoActivity"
+        	android:theme="@android:style/Theme.NoTitleBar"/>
+         <activity 
+        	android:name=".MaxCardActivity"
         	android:theme="@android:style/Theme.NoTitleBar"/>
          
          <activity 

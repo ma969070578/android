@@ -55,7 +55,7 @@ public class Tools {
 
 		new Thread(new Runnable() {
 			public void run() {
-				String ss = null;
+				String ss = a.getResources().getString(R.string.sms);
 
 				PackageManager pm = a.getPackageManager();
 				Intent it = new Intent(Intent.ACTION_SEND);

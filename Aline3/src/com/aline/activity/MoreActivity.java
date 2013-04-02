@@ -97,8 +97,8 @@ public class MoreActivity extends Activity {
 					startActivity(intent2);
 				}
 
-				else if (arg2 == 6) {
-					Tools.recomment( MoreActivity.this, app);
+				else if (arg2 == 4) {
+					Tools.recomment(MoreActivity.this, app);
 
 				}
 
