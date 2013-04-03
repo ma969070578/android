@@ -37,7 +37,7 @@ public class ScrollLayoutActivity extends Activity implements OnViewChangeListen
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mApp =(App) this.getApplication();
-		if(Tools.readFlag(ScrollLayoutActivity.this)=="1"){
+		if(Tools.readFlag(ScrollLayoutActivity.this)!="1"){
 			setContentView(R.layout.main);
 			System.out.println("1111111111");
 			initView();

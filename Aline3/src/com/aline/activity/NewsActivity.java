@@ -2,12 +2,8 @@ package com.aline.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,8 +24,8 @@ import com.aline.app.App;
 import com.aline.util.Tools;
 
 /**
- * @author 
- * 
+ * maq 2013.04.03
+ * 信息 
  */
 public class NewsActivity extends Activity {
 

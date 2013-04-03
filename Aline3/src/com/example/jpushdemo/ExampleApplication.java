@@ -1,6 +1,8 @@
 package com.example.jpushdemo;
 
-
+/**
+ * 暂不使用
+ */
 import android.app.Application;
 import android.util.Log;
 import cn.jpush.android.api.JPushInterface;
