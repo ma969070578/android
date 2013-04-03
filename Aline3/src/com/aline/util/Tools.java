@@ -31,6 +31,8 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
+import cn.waps.AppConnect;
+
 import com.aline.activity.R;
 import com.aline.app.App;
 
@@ -388,6 +390,9 @@ public class Tools {
 								// activity.finish();
 								
 								App.finishAll();
+								
+								AppConnect.getInstance(activity).finalize();
+								
 								Intent intent2 = new Intent(Intent.ACTION_MAIN);
 								intent2.addCategory(Intent.CATEGORY_HOME);
 								intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -3,6 +3,7 @@ package com.aline.app;
 import java.util.Stack;
 
 import cn.jpush.android.api.JPushInterface;
+import cn.waps.AppConnect;
 
 import android.app.Activity;
 import android.app.Application;
@@ -46,6 +47,13 @@ public class App extends Application {
          super.onCreate();
          JPushInterface.setDebugMode(true); 	//设置开启日志,发布时请关闭日志
          JPushInterface.init(this);     		// 初始化 JPush
+         
+         
+         
+         AppConnect.getInstance(this);	//必须确保AndroidManifest文件内配置了WAPS_ID
+//         开发者可通过代码开启错误报告功能，并通过管理后台的“错误报告”功能随时查看收集到的错误报告，以便及时进行修正。
+         AppConnect.getInstance(this).setCrashReport(false);//默认值true开启，设置false关闭
+
 	}
 
 	public static App getInstance() {

@@ -140,6 +140,16 @@
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
         <meta-data android:name="JPUSH_APPKEY" android:value="a59219778be8585b98c730b8" /> <!--  </>值来自开发者平台取得的AppKey-->
         
+        
+        
+        
+        
+        <activity android:name="cn.waps.OffersWebView" android:configChanges="keyboardHidden|orientation"/>
+<!--以下属性为应用ID,从万普后台获取-->
+<meta-data android:name="WAPS_ID" android:value="943b95a1bce60c1562e1412770ecea5f" />
+<!--以下属性为分发渠道ID,编码表参见本文档末附表-->
+<meta-data android:name="WAPS_PID" android:value="WAPS" />
+        
     </application>
     
     
@@ -169,5 +179,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    
+    
+  <uses-permission android:name="android.permission.GET_TASKS" />
+    
 </manifest>
 

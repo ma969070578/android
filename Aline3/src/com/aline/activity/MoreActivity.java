@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import cn.waps.AppConnect;
+
 import com.aline.app.App;
 import com.aline.download.AutoUpdater;
 import com.aline.ui.CornerListView;
@@ -81,23 +83,25 @@ public class MoreActivity extends Activity {
 				}
 				// feedback
 				else if (arg2 == 1) {
-					Intent intent1 = new Intent();
-					intent1.setClass( MoreActivity.this,  FeedBack.class);
-					startActivity(intent1);
+					AppConnect.getInstance(MoreActivity.this).showFeedback();
+//					Intent intent1 = new Intent();
+//					intent1.setClass( MoreActivity.this,  FeedBack.class);
+//					startActivity(intent1);
 				}
 				// checkupdate
 				else if (arg2 == 2) {
-
-					AutoUpdater.CheckForUpdate( MoreActivity.this,false);
+					AppConnect.getInstance(MoreActivity.this).checkUpdate(MoreActivity.this);
+//					AutoUpdater.CheckForUpdate( MoreActivity.this,false);
 				}
-		
 				else if (arg2 == 3) {
 					Intent intent2 = new Intent();
 					intent2.setClass( MoreActivity.this,  InfosActivity.class);
 					startActivity(intent2);
 				}
-
 				else if (arg2 == 4) {
+					AppConnect.getInstance(MoreActivity.this).showAppOffers(MoreActivity.this);
+				}
+				else if (arg2 == 5) {
 					Tools.recomment(MoreActivity.this, app);
 
 				}
@@ -129,6 +133,11 @@ public class MoreActivity extends Activity {
 		map = new HashMap<String, Object>();
 		map.put("text", getResources().getString(R.string.aboutus));
 		map.put("img", R.drawable.paranoid_android);
+		map_list1.add(map);
+		
+		map = new HashMap<String, Object>();
+		map.put("text", getResources().getString(R.string.apprecommend));
+		map.put("img", R.drawable.industrial_robot);
 		map_list1.add(map);
 		
 		
