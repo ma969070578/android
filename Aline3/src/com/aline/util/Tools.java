@@ -4,7 +4,6 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -30,7 +29,6 @@ import android.os.Parcelable;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
-
 import cn.waps.AppConnect;
 
 import com.aline.activity.R;
@@ -51,6 +49,15 @@ public class Tools {
 	public static ExecutorService executorService = Executors
 	.newCachedThreadPool();
 
+	public static void getDevInfo(Context context){
+		App.getInstance().networkType = Tools.getwebVersion(context);
+		App.getInstance().clientVersion=context.getResources().getString(R.string.revision);
+		App.getInstance().sysVersion = android.os.Build.VERSION.RELEASE;
+		App.getInstance().mobileModel = android.os.Build.MODEL;
+		App.getInstance().appkey =Tools.getAppKey(context);
+	}
+	
+	
 	
 	public static void recomment(final Activity a,
 			final App app) {
@@ -231,38 +238,68 @@ public class Tools {
 		editor.commit();
 	}
 
-	public static String readUserKey(Context context) {
-		SharedPreferences user = context.getSharedPreferences("user_info", 0);
-		return user.getString("userKey", "");
+//	public static String readUserKey(Context context) {
+//		SharedPreferences user = context.getSharedPreferences("user_info", 0);
+//		return user.getString("userKey", "");
+//	}
+//
+//	private static void writeUserKey(String userKey, Context context) {
+//		SharedPreferences user = context.getSharedPreferences("user_info", 0);
+//		Editor editor = user.edit();
+//		editor.putString("userKey", userKey);
+//		editor.commit();
+//	}
+	
+	//-------------推送appkey--------------------
+	public static String readAppKey(Context context) {
+		SharedPreferences user = context.getSharedPreferences("appkey", 0);
+		return user.getString("appkey", "");
 	}
 
-	private static void writeUserKey(String userKey, Context context) {
-		SharedPreferences user = context.getSharedPreferences("user_info", 0);
+	public static void writeAppKey(String userKey, Context context) {
+		SharedPreferences user = context.getSharedPreferences("appkey", 0);
 		Editor editor = user.edit();
-		editor.putString("userKey", userKey);
+		editor.putString("appkey", userKey);
 		editor.commit();
 	}
-
-	private static String readTelephone(Context context) {
+    
+	public static String getAppKey(Context context) {
+		TelephonyManager tm = (TelephonyManager) context
+				.getSystemService(Context.TELEPHONY_SERVICE);
+	    String appkey="";
+		String imei = tm.getDeviceId();
+		if (imei != null && !"".equals(imei)) {
+			appkey= imei;
+		}
+		else{
+			appkey = "" +(Math.random() * 1000000*1000000*1000);
+		}
+		writeAppKey(appkey, context);
+		return appkey;
+		}
+	
+	
+	//------------------------------------------
+	public static String readTelephone(Context context) {
 		SharedPreferences user = context.getSharedPreferences("user_info", 0);
 		return user.getString("telephone", "");
 	}
-
-	private static void writeTelephone(String telephone, Context context) {
+	
+	public static void writeTelephone(String telephone, Context context) {
 		SharedPreferences user = context.getSharedPreferences("user_info", 0);
 		Editor editor = user.edit();
 		editor.putString("telephone", telephone);
 		editor.commit();
 	}
 
-	private static String getLocalMacAddress(Context context) {
+	public static String getLocalMacAddress(Context context) {
 		WifiManager wifi = (WifiManager) context
 				.getSystemService(Context.WIFI_SERVICE);
 		WifiInfo info = wifi.getConnectionInfo();
 		return info.getMacAddress();
 	}
 
-	private static String getLocalIpAddress() {
+	public static String getLocalIpAddress() {
 		try {
 			for (Enumeration<NetworkInterface> en = NetworkInterface
 					.getNetworkInterfaces(); en.hasMoreElements();) {
@@ -312,42 +349,42 @@ public class Tools {
 		return false;
 	}
 
-	public static String getUserKey(Context context) {
-		TelephonyManager tm = (TelephonyManager) context
-				.getSystemService(Context.TELEPHONY_SERVICE);
-		// 先获取手机号
-		String mobile = tm.getLine1Number();
-		if (mobile != null && !"".equals(mobile)) {
-			return mobile;
-		}
-
-		/*
-		 * String simSerialNumber = tm.getSimSerialNumber(); if (simSerialNumber
-		 * != null && !"".equals(simSerialNumber)) { return simSerialNumber; }
-		 * 
-		 * String subscriberId = tm.getSubscriberId(); if (subscriberId != null
-		 * && !"".equals(subscriberId)) { return subscriberId; }
-		 */
-
-		String imei = tm.getDeviceId();
-		if (imei != null && !"".equals(imei)) {
-			return imei;
-		}
-
-		String mac = getLocalMacAddress(context);
-		if (mac != null && !"".equals(mac)) {
-			return mac;
-		}
-
-		String userKey = readUserKey(context);
-		if (userKey != null && !"".equals(userKey)) {
-			return userKey;
-		}
-
-		userKey = "" + new Date().getTime() + ((int) (Math.random() * 1000000));
-		writeUserKey(userKey, context);
-		return userKey;
-	}
+//	public static String getUserKey(Context context) {
+//		TelephonyManager tm = (TelephonyManager) context
+//				.getSystemService(Context.TELEPHONY_SERVICE);
+//		// 先获取手机号
+//		String mobile = tm.getLine1Number();
+//		if (mobile != null && !"".equals(mobile)) {
+//			return mobile;
+//		}
+//
+//		/*
+//		 * String simSerialNumber = tm.getSimSerialNumber(); if (simSerialNumber
+//		 * != null && !"".equals(simSerialNumber)) { return simSerialNumber; }
+//		 * 
+//		 * String subscriberId = tm.getSubscriberId(); if (subscriberId != null
+//		 * && !"".equals(subscriberId)) { return subscriberId; }
+//		 */
+//
+//		String imei = tm.getDeviceId();
+//		if (imei != null && !"".equals(imei)) {
+//			return imei;
+//		}
+//
+//		String mac = getLocalMacAddress(context);
+//		if (mac != null && !"".equals(mac)) {
+//			return mac;
+//		}
+//
+//		String userKey = readUserKey(context);
+//		if (userKey != null && !"".equals(userKey)) {
+//			return userKey;
+//		}
+//
+//		userKey = "" + new Date().getTime() + ((int) (Math.random() * 1000000));
+//		writeUserKey(userKey, context);
+//		return userKey;
+//	}
 
 	/**
 	 * 隐藏软键盘

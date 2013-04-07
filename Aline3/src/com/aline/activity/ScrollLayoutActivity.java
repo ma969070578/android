@@ -46,7 +46,7 @@ public class ScrollLayoutActivity extends Activity implements OnViewChangeListen
 			Intent intent=new Intent();
 			intent.setClass(ScrollLayoutActivity.this, Sample_baiduActivity.class);
 			Tools.writeFlag("1", this);
-			mApp.userKey=Tools.getUserKey(this);
+//			mApp.userKey=Tools.getUserKey(this);
 			startActivity(intent);
 			
 		}

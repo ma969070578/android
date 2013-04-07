@@ -22,7 +22,7 @@ import com.google.zxing.common.BitMatrix;
  */
 public class MaxCardActivity extends Activity {
 	// 图片宽度的一般
-	private static final int IMAGE_HALFWIDTH = 20;
+	private static final int IMAGE_HALFWIDTH = 40;
 	// 显示二维码图片
 	private ImageView imageview;
 	// 插入到二维码里面的图片对象

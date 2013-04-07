@@ -18,19 +18,19 @@ public class SearchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.my_info);
 		
-		EditText editText=(EditText)this.findViewById(R.id.mymsg);
-		Button	 subBtn=(Button)this.findViewById(R.id.button1);
-		
-//		msg=editText.getText().toString();
-	    msg = "{\"icon\":\"来点外卖\",\"n_content\":\"你好\"}";
-	    
-		subBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				PushMsgUtil.pushMsg(msg);	
-			}
-		});
+//		EditText editText=(EditText)this.findViewById(R.id.mymsg);
+//		Button	 subBtn=(Button)this.findViewById(R.id.button1);
+//		
+//		String content=editText.getText().toString();
+//	    msg = "{\"icon\":\"来点外卖\",\"n_content\":\"你好\"}";
+//	    
+//		subBtn.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				PushMsgUtil.pushMsg(msg);	
+//			}
+//		});
    }
 }

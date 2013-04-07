@@ -2,14 +2,15 @@ package com.aline.app;
 
 import java.util.Stack;
 
-import cn.jpush.android.api.JPushInterface;
-import cn.waps.AppConnect;
-
 import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
+import cn.jpush.android.api.JPushInterface;
+import cn.waps.AppConnect;
+
+import com.aline.util.Tools;
 
 public class App extends Application {
 
@@ -34,6 +35,14 @@ public class App extends Application {
 	public boolean isLocation=false;
 	public boolean isStartCheckUpdata=false;
 	
+	
+	public String sysVersion;// 系统版本
+	public String mobileModel;// 设备名称
+	public String clientVersion; // 客户端版本
+	public String networkType;// 网络类型
+	public String appkey;   
+	
+	
 	@Override
 	public void onCreate() {
 
@@ -52,7 +61,10 @@ public class App extends Application {
          
          AppConnect.getInstance(this);	//必须确保AndroidManifest文件内配置了WAPS_ID
 //         开发者可通过代码开启错误报告功能，并通过管理后台的“错误报告”功能随时查看收集到的错误报告，以便及时进行修正。
-         AppConnect.getInstance(this).setCrashReport(false);//默认值true开启，设置false关闭
+         AppConnect.getInstance(this).setCrashReport(true);//默认值true开启，设置false关闭
+         
+         //获取设备信息
+         Tools.getDevInfo(this);
 
 	}
 

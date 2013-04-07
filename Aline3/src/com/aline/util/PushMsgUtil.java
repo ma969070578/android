@@ -11,6 +11,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import android.util.Log;
+
 import cn.jpush.api.StringUtils;
 
 /**
@@ -21,6 +23,7 @@ import cn.jpush.api.StringUtils;
 
 //http://blog.csdn.net/heynine/article/details/8140000
 public class PushMsgUtil {
+	private static final String LOGTAG = LogUtil.makeLogTag(PushMsgUtil.class);
 	
 //	public static final String PUSH_URL = "https://api.jpush.cn:443/sendmsg/sendmsg";
 	public static final String PUSH_URL = "http://api.jpush.cn:8800/sendmsg/sendmsg";
@@ -46,6 +49,8 @@ public class PushMsgUtil {
 		datas.add(msg_type);
 		datas.add(msg_content);
 		datas.add(platform);
+		
+		Log.d(LOGTAG, "pushMsg"+datas.toString()); 
 		try {
 			HttpEntity entity = new UrlEncodedFormEntity(datas, "utf-8");
 			HttpPost post = new HttpPost(PUSH_URL);
