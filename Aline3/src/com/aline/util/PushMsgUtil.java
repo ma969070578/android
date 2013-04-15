@@ -30,11 +30,12 @@ public class PushMsgUtil {
 	
 	public static void pushMsg(String msg) {
 		BasicNameValuePair name = new BasicNameValuePair("username", Tools.pushusername);  //用户名
-		BasicNameValuePair sendno = new BasicNameValuePair("sendno", "3621");  // 发送编号。由开发者自己维护，标识一次发送请求
+		int msendno=Tools.getSendNo();
+		BasicNameValuePair sendno = new BasicNameValuePair("sendno", msendno+"");  // 发送编号。由开发者自己维护，标识一次发送请求
 		BasicNameValuePair appkeys = new BasicNameValuePair("appkeys", Tools.AppKey);  // 待发送的应用程序(appKey)，只能填一个。
 		BasicNameValuePair receiver_type = new BasicNameValuePair("receiver_type", "4");  
 		//验证串，用于校验发送的合法性。
-		BasicNameValuePair verification_code = new BasicNameValuePair("verification_code", getVerificationCode());
+		BasicNameValuePair verification_code = new BasicNameValuePair("verification_code", getVerificationCode(msendno));
 		//发送消息的类型：1 通知 2 自定义
 		BasicNameValuePair msg_type = new BasicNameValuePair("msg_type", "1");
 		BasicNameValuePair msg_content = new BasicNameValuePair("msg_content", msg);
@@ -66,11 +67,11 @@ public class PushMsgUtil {
 	}
 	
 	
-	private static String getVerificationCode() {
+	private static String getVerificationCode(int sendno) {
 
 		String username = Tools.pushusername;  //username 是开发者Portal帐户的登录帐户名
 		String password = Tools.pushpasswd;
-		int sendno = 3621;
+//		int sendno = 3621;
 		int receiverType = 4;
 		String md5Password = StringUtils.toMD5(password);; //password 是开发者Portal帐户的登录密码
 		 

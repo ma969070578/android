@@ -3,11 +3,21 @@ package com.aline.util;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -27,40 +37,39 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Parcelable;
 import android.telephony.TelephonyManager;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import cn.waps.AppConnect;
 
 import com.aline.activity.R;
 import com.aline.app.App;
+import com.google.gson.internal.bind.MapTypeAdapterFactory;
 
 public class Tools {
 
 	public static boolean isDebug = true; // 调试模式
-	public static Long driverid=1l;
-	public static String  driverpwd="111";
+	public static Long driverid = 1l;
+	public static String driverpwd = "111";
 	public static final String HOST = "dj.95081.com";
-	
-	
-	public static final String  pushusername="emotte";
-	public static final String  pushpasswd = "123456";
-	public static final String  AppKey="a59219778be8585b98c730b8";
+
+	public static final String pushusername = "emotte";
+	public static final String pushpasswd = "123456";
+	public static final String AppKey = "a59219778be8585b98c730b8";
 
 	public static ExecutorService executorService = Executors
-	.newCachedThreadPool();
+			.newCachedThreadPool();
 
-	public static void getDevInfo(Context context){
+	public static void getDevInfo(Context context) {
 		App.getInstance().networkType = Tools.getwebVersion(context);
-		App.getInstance().clientVersion=context.getResources().getString(R.string.revision);
+		App.getInstance().clientVersion = context.getResources().getString(
+				R.string.revision);
 		App.getInstance().sysVersion = android.os.Build.VERSION.RELEASE;
 		App.getInstance().mobileModel = android.os.Build.MODEL;
-		App.getInstance().appkey =Tools.getAppKey(context);
+		App.getInstance().appkey = Tools.getAppKey(context);
 	}
-	
-	
-	
-	public static void recomment(final Activity a,
-			final App app) {
+
+	public static void recomment(final Activity a, final App app) {
 
 		new Thread(new Runnable() {
 			public void run() {
@@ -79,10 +88,10 @@ public class Tools {
 						it.putExtra(Intent.EXTRA_SUBJECT, "欢迎使用一线牵"); // 分享的主题
 						ActivityInfo activityInfo = info.activityInfo;
 
-			
 						if (activityInfo.packageName.contains("bluetooth")
 								|| activityInfo.name.contains("bluetooth")
-								|| activityInfo.packageName.contains("UCMobile")
+								|| activityInfo.packageName
+										.contains("UCMobile")
 								|| activityInfo.name.contains("UCMobile")
 								|| activityInfo.packageName.contains("renren")
 								|| activityInfo.name.contains("renren")
@@ -95,7 +104,6 @@ public class Tools {
 						targeted.setPackage(activityInfo.packageName);
 						targetedShareIntents.add(targeted);
 					}
-
 
 					Intent chooserIntent = Intent.createChooser(
 							targetedShareIntents.remove(0), "分享");
@@ -110,7 +118,9 @@ public class Tools {
 					try {
 						a.startActivity(chooserIntent);
 					} catch (android.content.ActivityNotFoundException ex) {
-//						 Toast.makeText(this, "Can't find share component to share", Toast.LENGTH_SHORT).show();
+						// Toast.makeText(this,
+						// "Can't find share component to share",
+						// Toast.LENGTH_SHORT).show();
 					}
 				}
 
@@ -119,7 +129,7 @@ public class Tools {
 
 	}
 
-	//判断网络连接
+	// 判断网络连接
 	public static boolean isConNetwork(final Activity con) {
 		if (!isConnectInternet(con)) {
 			return true;
@@ -138,8 +148,6 @@ public class Tools {
 		return false;
 
 	}
-
-
 
 	public static String getwebVersion(Context app) {
 		String typeName = null;
@@ -225,7 +233,7 @@ public class Tools {
 		return defaultPhone;
 
 	}
-	
+
 	public static String readFlag(Context context) {
 		SharedPreferences user = context.getSharedPreferences("user_flag", 0);
 		return user.getString("flag", "");
@@ -238,19 +246,19 @@ public class Tools {
 		editor.commit();
 	}
 
-//	public static String readUserKey(Context context) {
-//		SharedPreferences user = context.getSharedPreferences("user_info", 0);
-//		return user.getString("userKey", "");
-//	}
-//
-//	private static void writeUserKey(String userKey, Context context) {
-//		SharedPreferences user = context.getSharedPreferences("user_info", 0);
-//		Editor editor = user.edit();
-//		editor.putString("userKey", userKey);
-//		editor.commit();
-//	}
-	
-	//-------------推送appkey--------------------
+	// public static String readUserKey(Context context) {
+	// SharedPreferences user = context.getSharedPreferences("user_info", 0);
+	// return user.getString("userKey", "");
+	// }
+	//
+	// private static void writeUserKey(String userKey, Context context) {
+	// SharedPreferences user = context.getSharedPreferences("user_info", 0);
+	// Editor editor = user.edit();
+	// editor.putString("userKey", userKey);
+	// editor.commit();
+	// }
+
+	// -------------推送appkey--------------------
 	public static String readAppKey(Context context) {
 		SharedPreferences user = context.getSharedPreferences("appkey", 0);
 		return user.getString("appkey", "");
@@ -262,29 +270,27 @@ public class Tools {
 		editor.putString("appkey", userKey);
 		editor.commit();
 	}
-    
+
 	public static String getAppKey(Context context) {
 		TelephonyManager tm = (TelephonyManager) context
 				.getSystemService(Context.TELEPHONY_SERVICE);
-	    String appkey="";
+		String appkey = "";
 		String imei = tm.getDeviceId();
 		if (imei != null && !"".equals(imei)) {
-			appkey= imei;
-		}
-		else{
-			appkey = "" +(Math.random() * 1000000*1000000*1000);
+			appkey = imei;
+		} else {
+			appkey = "" + (Math.random() * 1000000 * 1000000 * 1000);
 		}
 		writeAppKey(appkey, context);
 		return appkey;
-		}
-	
-	
-	//------------------------------------------
+	}
+
+	// ------------------------------------------
 	public static String readTelephone(Context context) {
 		SharedPreferences user = context.getSharedPreferences("user_info", 0);
 		return user.getString("telephone", "");
 	}
-	
+
 	public static void writeTelephone(String telephone, Context context) {
 		SharedPreferences user = context.getSharedPreferences("user_info", 0);
 		Editor editor = user.edit();
@@ -349,42 +355,42 @@ public class Tools {
 		return false;
 	}
 
-//	public static String getUserKey(Context context) {
-//		TelephonyManager tm = (TelephonyManager) context
-//				.getSystemService(Context.TELEPHONY_SERVICE);
-//		// 先获取手机号
-//		String mobile = tm.getLine1Number();
-//		if (mobile != null && !"".equals(mobile)) {
-//			return mobile;
-//		}
-//
-//		/*
-//		 * String simSerialNumber = tm.getSimSerialNumber(); if (simSerialNumber
-//		 * != null && !"".equals(simSerialNumber)) { return simSerialNumber; }
-//		 * 
-//		 * String subscriberId = tm.getSubscriberId(); if (subscriberId != null
-//		 * && !"".equals(subscriberId)) { return subscriberId; }
-//		 */
-//
-//		String imei = tm.getDeviceId();
-//		if (imei != null && !"".equals(imei)) {
-//			return imei;
-//		}
-//
-//		String mac = getLocalMacAddress(context);
-//		if (mac != null && !"".equals(mac)) {
-//			return mac;
-//		}
-//
-//		String userKey = readUserKey(context);
-//		if (userKey != null && !"".equals(userKey)) {
-//			return userKey;
-//		}
-//
-//		userKey = "" + new Date().getTime() + ((int) (Math.random() * 1000000));
-//		writeUserKey(userKey, context);
-//		return userKey;
-//	}
+	// public static String getUserKey(Context context) {
+	// TelephonyManager tm = (TelephonyManager) context
+	// .getSystemService(Context.TELEPHONY_SERVICE);
+	// // 先获取手机号
+	// String mobile = tm.getLine1Number();
+	// if (mobile != null && !"".equals(mobile)) {
+	// return mobile;
+	// }
+	//
+	// /*
+	// * String simSerialNumber = tm.getSimSerialNumber(); if (simSerialNumber
+	// * != null && !"".equals(simSerialNumber)) { return simSerialNumber; }
+	// *
+	// * String subscriberId = tm.getSubscriberId(); if (subscriberId != null
+	// * && !"".equals(subscriberId)) { return subscriberId; }
+	// */
+	//
+	// String imei = tm.getDeviceId();
+	// if (imei != null && !"".equals(imei)) {
+	// return imei;
+	// }
+	//
+	// String mac = getLocalMacAddress(context);
+	// if (mac != null && !"".equals(mac)) {
+	// return mac;
+	// }
+	//
+	// String userKey = readUserKey(context);
+	// if (userKey != null && !"".equals(userKey)) {
+	// return userKey;
+	// }
+	//
+	// userKey = "" + new Date().getTime() + ((int) (Math.random() * 1000000));
+	// writeUserKey(userKey, context);
+	// return userKey;
+	// }
 
 	/**
 	 * 隐藏软键盘
@@ -408,45 +414,112 @@ public class Tools {
 		}
 	}
 
+	public static void appExit(final Activity activity) {
 
-	 public static void appExit(final Activity activity) {
-		
-					String  title = "您确认关闭"+App.getInstance().getResources().getString(R.string.app_name)+"客户端吗？";
-			
-				 
-				 
-			
-						new AlertDialog.Builder(activity).setIcon(R.drawable.ic_launcher)
-						.setTitle("关闭程序").setMessage(title)
-						.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-							}
-						})
-						.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int whichButton) {
-								// activity.finish();
-								
-								App.finishAll();
-								
-								AppConnect.getInstance(activity).finalize();
-								
-								Intent intent2 = new Intent(Intent.ACTION_MAIN);
-								intent2.addCategory(Intent.CATEGORY_HOME);
-								intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-								activity.startActivity(intent2);
-								if (Integer.parseInt(Build.VERSION.SDK) >= 8) {
-									android.os.Process.killProcess(android.os.Process
-											.myPid());
-								} else {
-				
-									ActivityManager am = (ActivityManager) activity
-											.getSystemService(Context.ACTIVITY_SERVICE);
-									am.restartPackage(activity.getPackageName());
-									System.exit(0);
-								}
-							}
-						}).show();
-				 }
+		String title = "您确认关闭"
+				+ App.getInstance().getResources().getString(R.string.app_name)
+				+ "客户端吗？";
 
+		new AlertDialog.Builder(activity).setIcon(R.drawable.ic_launcher)
+				.setTitle("关闭程序").setMessage(title)
+				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+					}
+				})
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						// activity.finish();
+
+						App.finishAll();
+
+						AppConnect.getInstance(activity).finalize();
+
+						Intent intent2 = new Intent(Intent.ACTION_MAIN);
+						intent2.addCategory(Intent.CATEGORY_HOME);
+						intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						activity.startActivity(intent2);
+						if (Integer.parseInt(Build.VERSION.SDK) >= 8) {
+							android.os.Process.killProcess(android.os.Process
+									.myPid());
+						} else {
+
+							ActivityManager am = (ActivityManager) activity
+									.getSystemService(Context.ACTIVITY_SERVICE);
+							am.restartPackage(activity.getPackageName());
+							System.exit(0);
+						}
+					}
+				}).show();
+	}
+
+	/**
+	 * 生成极光推送发送编号
+	 * 
+	 * @return
+	 */
+	public static int getSendNo() {
+
+		SimpleDateFormat format = new SimpleDateFormat("MM-ddHH-mm-ss");
+		String time = format.format(new Date());
+		System.out.println("//////times:" + time + "..."
+				+ time.replaceAll("-", "") + "........"
+				+ Integer.parseInt(time.replaceAll("-", "")));
+		int jgno = Integer.parseInt(time.replaceAll("-", ""));
+		return jgno;
+
+	}
+
+	/**
+	 *  n_builder_id 可选 1-1000的数值，不填则默认为 0，使用 极光Push SDK 的默认通知样式。
+	 *  n_title 可选通知标题。不填则默认使用该应用的名称。 
+	 *  n_content 必须 通知内容。 
+	 *  n_extras 可选通知附加参数。JSON格式。客户端可取得全部内容。
+	 * @return
+	 */
+	public static JSONObject getMsgContent(String builder, String title,
+			String content, String extras) {
+		HashMap map = new HashMap();
+		if (builder != null && !"".equals(builder)) {
+			map.put("n_builder_id", builder);
+		}
+		if (title != null && !"".equals(title)) {
+			map.put("n_title", title);
+		} 
+		    map.put("n_content", content);   
+		if (extras != null && !"".equals(extras)) {
+			map.put("n_extras", extras);
+		}
+		JSONObject obj = Tools.mapToJson(map);
+		return obj;
+	}
+
+	/**
+	 * 将Map转换为JSON格式数据 从Map中抽取数据返回JSON格式数据
+	 * 
+	 * @param map
+	 *            Map<String, String[]>
+	 * @return
+	 * @see [类、类#方法、类#成员]
+	 */
+
+	public static JSONObject mapToJson(Map<String, String> map) {
+		if (null == map) {
+			return null;
+		}
+		Set<Map.Entry<String, String>> set = map.entrySet();
+		JSONObject jObject = new JSONObject();
+
+		for (Iterator<Entry<String, String>> it = set.iterator(); it
+				.hasNext();) {
+			Entry<String, String> entry = it.next();
+			try {
+				jObject.put(entry.getKey(), entry.getValue());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return jObject;
+	}
 
 }
