@@ -44,19 +44,19 @@ public class MoreActivity extends Activity {
 		setContentView(R.layout.main_more);
 		app=App.getInstance();
 		title=(TextView) findViewById(R.id.title);
-		title.setText(getResources().getString(R.string. more));
+		title.setText(getResources().getString(R.string.more));
 		
-		btn_back = (Button) findViewById(R.id.butt_left);
-		btn_back.setVisibility(View.VISIBLE);
-		btn_back.setText(getResources().getString(R.string.back));
-
-		btn_back.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// finish();
-			}
-		});
+//		btn_back = (Button) findViewById(R.id.butt_left);
+//		btn_back.setVisibility(View.VISIBLE);
+//		btn_back.setText(getResources().getString(R.string.back));
+//
+//		btn_back.setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				// finish();
+//			}
+//		});
 	
 		mListView1 = (CornerListView) findViewById(R.id. more_list);
 		getDataSource1();

@@ -10,6 +10,8 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.util.Log;
 
@@ -28,7 +30,7 @@ public class PushMsgUtil {
 //	public static final String PUSH_URL = "https://api.jpush.cn:443/sendmsg/sendmsg";
 	public static final String PUSH_URL = "http://api.jpush.cn:8800/sendmsg/sendmsg";
 	
-	public static void pushMsg(String msg) {
+	public static int pushMsg(String msg) {
 		BasicNameValuePair name = new BasicNameValuePair("username", Tools.pushusername);  //用户名
 		int msendno=Tools.getSendNo();
 		BasicNameValuePair sendno = new BasicNameValuePair("sendno", msendno+"");  // 发送编号。由开发者自己维护，标识一次发送请求
@@ -58,11 +60,20 @@ public class PushMsgUtil {
 			post.setEntity(entity);
 			HttpClient client = ClientUtil.getNewHttpClient();
 			HttpResponse reponse = client.execute(post);
-			HttpEntity resEntity = reponse.getEntity();
-			System.out.println(EntityUtils.toString(resEntity));
+//			HttpEntity resEntity = reponse.getEntity();
+//			System.out.println(EntityUtils.toString(resEntity));
+			JSONObject obj = new JSONObject(EntityUtils.toString(reponse.getEntity()));
+			int code = obj.getInt("errcode");
+			return code;
+
 		} catch (Exception ex) {
+//			java.lang.IllegalStateExceptio n: Content has been consumed
+//
+//			这个问题是多次调用httpEntity.getContent()导致的， entity中的内容只能读取一次
+
 			ex.printStackTrace();
 		}
+		return -1;
 		
 	}
 	

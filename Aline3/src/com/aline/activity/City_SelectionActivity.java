@@ -28,7 +28,7 @@ public class City_SelectionActivity extends Activity {
 //	private File f = new File("/sdcard/weather/db_weather.db"); //数据库文件
 	private File f = new File("file:///android_asset/db_weather.db");   
     private String DB_NAME="db_weather.db";
-    private String DB_PATH="/udisk/Android/data/com.aline.activity/";
+    private String DB_PATH="/data/";
 	            // .getAssets()
 	private Spinner province;  //省份spinner
 	private Spinner city;      //城市spinner
@@ -43,7 +43,10 @@ public class City_SelectionActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.area);
         try {
-			copyDatabase();
+        	if(!checkDatabase()){
+        		
+        		copyDatabase();
+        	}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,6 +101,7 @@ public class City_SelectionActivity extends Activity {
      */
     public List<String> getProSet(){
        //打开数据库 
+    	if(checkDatabase()){
     	String filename=DB_PATH+DB_NAME;
     	File ff = new File(filename);
     	SQLiteDatabase db1 = SQLiteDatabase.openOrCreateDatabase(ff, null);
@@ -109,6 +113,8 @@ public class City_SelectionActivity extends Activity {
  		cursor.close();
  		db1.close();
     	return proset;
+    	}
+    	return null;
     }
     /**
      * 返回 城市集合
@@ -116,8 +122,11 @@ public class City_SelectionActivity extends Activity {
     public List<String> getCitSet(int pro_id){
     	//清空城市集合
     	citset.clear();
+    	if(checkDatabase()){
+    		String filename=DB_PATH+DB_NAME;
+        	File ff = new File(filename);
        //打开数据库 
-    	SQLiteDatabase db1 = SQLiteDatabase.openOrCreateDatabase(f, null);
+    	SQLiteDatabase db1 = SQLiteDatabase.openOrCreateDatabase(ff, null);
  		Cursor cursor=db1.query("citys", null, "province_id="+pro_id, null, null, null, null);
  		while(cursor.moveToNext()){
  			String pro=cursor.getString(cursor.getColumnIndexOrThrow("name"));
@@ -126,6 +135,8 @@ public class City_SelectionActivity extends Activity {
  		cursor.close();
  		db1.close();
     	return citset;
+    	}
+    	return null;
     }
     /**
      * 返回适配器

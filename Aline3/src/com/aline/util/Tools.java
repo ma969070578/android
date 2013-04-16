@@ -485,7 +485,10 @@ public class Tools {
 		if (title != null && !"".equals(title)) {
 			map.put("n_title", title);
 		} 
-		    map.put("n_content", content);   
+		if(content != null && !"".equals(content)) {
+			System.out.println("content........"+content);
+			map.put("n_content", content);
+		} 
 		if (extras != null && !"".equals(extras)) {
 			map.put("n_extras", extras);
 		}

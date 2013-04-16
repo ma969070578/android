@@ -16,10 +16,13 @@
    <string name="title">一线牵</string>
     <string name="myMap_quit">退出地图</string>
     <string name="myMap_about">关于地图</string>
+    <string name="ok">确定</string>
+    <string name="cancle">取消</string>
 
     
       <string name="referesh">刷新</string>
-    <string name="search">查找好友</string>
+    <string name="search">搜索</string>
+    <string name="myinfo">我的资料</string>
     
         <string name="main_home">首页</string>
     <string name="main_news">信息</string>

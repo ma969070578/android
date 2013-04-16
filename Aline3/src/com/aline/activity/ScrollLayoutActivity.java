@@ -37,17 +37,17 @@ public class ScrollLayoutActivity extends Activity implements OnViewChangeListen
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mApp =(App) this.getApplication();
-		if(Tools.readFlag(ScrollLayoutActivity.this)!="1"){
+		if(Tools.readFlag(ScrollLayoutActivity.this)!="2"){
 			setContentView(R.layout.main);
 			System.out.println("1111111111");
 			initView();
 		}
 		else{
 			Intent intent=new Intent();
-			intent.setClass(ScrollLayoutActivity.this, Sample_baiduActivity.class);
-			Tools.writeFlag("1", this);
+			intent.setClass(ScrollLayoutActivity.this, MainTabActivity.class);
 //			mApp.userKey=Tools.getUserKey(this);
 			startActivity(intent);
+			Tools.writeFlag("2", this);
 			
 		}
 	}
@@ -104,7 +104,7 @@ public class ScrollLayoutActivity extends Activity implements OnViewChangeListen
 						rightLayout.setVisibility(View.GONE);
 						Intent intent = new Intent(
 								ScrollLayoutActivity.this,
-								Sample_baiduActivity.class);
+								MainTabActivity.class);
 						ScrollLayoutActivity.this.startActivity(intent);
 						ScrollLayoutActivity.this.finish();
 						//结束老Activity启动新Activity之前的一个过度动画
