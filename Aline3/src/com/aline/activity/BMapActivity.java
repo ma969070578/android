@@ -43,7 +43,6 @@ public class BMapActivity extends MapActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_map);
         
-        
         mapView = (MapView)findViewById(R.id.bmapView);
         bMapManager = new BMapManager(BMapActivity.this);
         //必须加载Key

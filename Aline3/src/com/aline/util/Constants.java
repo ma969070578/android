@@ -20,5 +20,12 @@ public class Constants {
 	public static final String EXTRA_LOCATION_CITY = "location.city";
 	
 	//................................................................
+	
+	
+	public static final String PUSH_ADD_FRIENDS="add.frieds";
+	
+	public static final String PUSH_FRINEDS_SUCCESS="push.success";
+	
+	public static final String PUSH_FRINEDS_FAILED="push.failed";
 
 }

@@ -5,10 +5,10 @@ import android.os.Bundle;
 
 public class OtherActivity extends Activity {
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.other);
+		setContentView(R.layout.edit_text);
 	}
-	
 }

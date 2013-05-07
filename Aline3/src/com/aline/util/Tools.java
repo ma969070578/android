@@ -257,7 +257,20 @@ public class Tools {
 	// editor.putString("userKey", userKey);
 	// editor.commit();
 	// }
+	
+	//----------个人信息存储
+	public static String readShare(Context context,String key) {
+		SharedPreferences user = context.getSharedPreferences("user_info",0);
+		return user.getString(key, "");
+	}
 
+	public static void writeShare(Context context,String key,String value ) {
+		SharedPreferences user = context.getSharedPreferences("user_info", 0);
+		Editor editor = user.edit();
+		editor.putString(key, value);
+		editor.commit();
+	}  
+	
 	// -------------推送appkey--------------------
 	public static String readAppKey(Context context) {
 		SharedPreferences user = context.getSharedPreferences("appkey", 0);

@@ -32,7 +32,8 @@
     			android:text="@string/main_home"
     			android:drawableTop="@drawable/icon_1_n"
     			android:id="@+id/radio_button0"
-    			style="@style/main_tab_bottom"/>
+    			style="@style/main_tab_bottom"
+    			android:checked="true"/>
     		<RadioButton 
     			android:layout_marginTop="2.0dip"
     			android:text="@string/main_news"

@@ -29,6 +29,7 @@ public class MainTabActivity extends TabActivity implements OnCheckedChangeListe
         tabhost.addTab(tabhost.newTabSpec("iHome")
         		.setIndicator(getResources().getString(R.string.main_home), getResources().getDrawable(R.drawable.icon_1_n))
         		.setContent(iHome));
+       
         
 		iNews = new Intent(this, NewsActivity.class);
 		tabhost.addTab(tabhost.newTabSpec("iNews")
@@ -49,6 +50,7 @@ public class MainTabActivity extends TabActivity implements OnCheckedChangeListe
 		 tabhost.addTab(tabhost.newTabSpec("iMore")
 	        		.setIndicator(getResources().getString(R.string.more), getResources().getDrawable(R.drawable.icon_5_n))
 	        		.setContent(iMore));
+		
     }
    
 

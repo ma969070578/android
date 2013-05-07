@@ -38,6 +38,11 @@
         	android:name=".MyInfoActivity"
         	android:theme="@android:style/Theme.NoTitleBar"/>
          
+         
+          <activity 
+        	android:name=".EditTextActivity"
+        	android:theme="@android:style/Theme.NoTitleBar"/>
+         
          <activity  
             android:name=".City_SelectionActivity"
             android:theme="@android:style/Theme.NoTitleBar"/>
