@@ -1,5 +1,5 @@
 package com.aline.activity;
-//http://www.eoeandroid.com/forum.php?mod=viewthread&tid=236176&extra=page%3D1&page=1
+
 
 import java.io.UnsupportedEncodingException;
 
@@ -16,32 +16,31 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 /**
- * 本demo是仿微信的二维码名片 本身google的二维码是一个开源的项目我们要制作一个二维码很简单
- * 
- * 本例的作用是将图片与二维码结合，当然图片不能太大 ，要不然二维码读不出来。
+ * 本demo是仿微信的二维码名片 本身google的二维码是一个开源的项目我们要制作一个二维码很简单 本例的作用是将图片与二维码结合，当然图片不能太大
+ * ，要不然二维码读不出来。
  */
 public class MaxCardActivity extends Activity {
-	// 图片宽度的一般
-	private static final int IMAGE_HALFWIDTH = 40;
+    // 图片宽度的一般
+	private static final int IMAGE_HALFWIDTH = 20;
 	// 显示二维码图片
 	private ImageView imageview;
 	// 插入到二维码里面的图片对象
 	private Bitmap mBitmap;
 	// 需要插图图片的大小 这里设定为40*40
-	int[] pixels = new int[2 * IMAGE_HALFWIDTH * 2 * IMAGE_HALFWIDTH];
+	int[] pixels = new int[2*IMAGE_HALFWIDTH * 2*IMAGE_HALFWIDTH];
 
 	@Override
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
-		// 构造对象
+        // 构造对象
 		imageview = new ImageView(this);
-		// 构造需要插入的图片对象
+        // 构造需要插入的图片对象
 		mBitmap = ((BitmapDrawable) getResources().getDrawable(
-				R.drawable.ic_launcher)).getBitmap();
+				R.drawable.ic_launcher_web)).getBitmap();
 		// 缩放图片
 		Matrix m = new Matrix();
-		float sx = (float) 2 * IMAGE_HALFWIDTH / mBitmap.getWidth();
-		float sy = (float) 2 * IMAGE_HALFWIDTH / mBitmap.getHeight();
+		float sx = (float) 2*IMAGE_HALFWIDTH / mBitmap.getWidth();
+		float sy = (float) 2*IMAGE_HALFWIDTH / mBitmap.getHeight();
 		m.setScale(sx, sy);
 		// 重新构造一个40*40的图片
 		mBitmap = Bitmap.createBitmap(mBitmap, 0, 0, mBitmap.getWidth(),
@@ -78,13 +77,10 @@ public class MaxCardActivity extends Activity {
 		int[] pixels = new int[width * height];
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				if (x > halfW - IMAGE_HALFWIDTH && x < halfW +
-
-				IMAGE_HALFWIDTH && y > halfH - IMAGE_HALFWIDTH
+				if (x > halfW - IMAGE_HALFWIDTH && x < halfW + IMAGE_HALFWIDTH && y > halfH - IMAGE_HALFWIDTH
 						&& y < halfH + IMAGE_HALFWIDTH) {
-					pixels[y * width + x] = mBitmap.getPixel(x - halfW
-
-					+ IMAGE_HALFWIDTH, y - halfH + IMAGE_HALFWIDTH);
+					pixels[y * width + x] = mBitmap.getPixel(x - halfW + IMAGE_HALFWIDTH, y
+							- halfH + IMAGE_HALFWIDTH);
 				} else {
 					if (matrix.get(x, y)) {
 						pixels[y * width + x] = 0xff000000;
