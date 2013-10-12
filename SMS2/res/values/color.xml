@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="kongxian">#2a9400</color>
+    <color name="fuwu">#ff7200</color>
+    <color name="haoping">#ff0c00</color>
+    <color name="zhongpin">#e9a400</color>
+    <color name="chapin">#000</color>
+
+    <style name="color">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17dip</item>
+    </style>
+
+    <style name="commentcolor">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17dip</item>
+        <item name="android:lines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <color name="starcolor">#0033ff</color>
+    <color name="backgroundlist">#00000000</color>
+    <color name="all_page_bg">#ffe7e8e9</color>
+    <color name="xian">#c0c0c0</color>
+    <color name="red">#FF1014</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#808080</color>
+    <color name="black">#000000</color>
+    <color name="yellow">#FF1014</color>
+    <color name="rownum">#fb6626</color>
+    <color name="name">#000000</color>
+    <color name="htblue">#003399</color>
+    
+    <color name="Ycolor">#ff0000</color>
+    <color name="Bcolor">#49B7D0</color>
+   <color name="list_item_bg_normal">#ffffff</color>
+  <color name="list_item_bg_press">#FF8A20</color>
+    <color name="vifrification">#00000000</color>
+    <color name="transparent">#9000</color> 
+  <color name="shb_news_head_back_color">#ffff9933</color>
+</resources>
