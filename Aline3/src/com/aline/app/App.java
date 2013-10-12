@@ -8,8 +8,12 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import cn.jpush.android.api.JPushInterface;
+import cn.sharesdk.framework.ShareSDK;
 import cn.waps.AppConnect;
 
+import com.aline.location.BLocationStation;
+import com.aline.location.BLocationStation.LocationFinish;
+import com.aline.util.SystemOut;
 import com.aline.util.Tools;
 
 public class App extends Application {
@@ -40,8 +44,12 @@ public class App extends Application {
 	public String mobileModel;// 设备名称
 	public String clientVersion; // 客户端版本
 	public String networkType;// 网络类型
-	public String appkey;   
+//	public String appkey;   
 	
+	public int glat;// google偏移后纬度
+	public int glon;// google偏移后经度
+	
+	public String address;
 	
 	@Override
 	public void onCreate() {
@@ -65,6 +73,24 @@ public class App extends Application {
          
          //获取设备信息
          Tools.getDevInfo(this);
+         
+         
+       //百度定位
+ 		BLocationStation.getInstance(this).registerLocationListener();
+ 		BLocationStation.getInstance(this).setFinish(new LocationFinish() {
+ 			
+ 			@Override
+ 			public void callBack(int state) {
+ 				// TODO Auto-generated method stub
+ 				SystemOut.out("location callback:"+"state="+state);
+ 			}
+ 		});
+ 		
+ 		BLocationStation.getInstance(this).startManager();
+ 		BLocationStation.getInstance(this).isLocallocation = true;
+
+ 		 //sharesdk
+ 		 ShareSDK.initSDK(this);
 
 	}
 

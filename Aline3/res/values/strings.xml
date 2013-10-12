@@ -89,5 +89,9 @@
     <string name="showblog">新浪微博：</string>
     <string name="blog"> http://weibo.com/1661932913</string>
      <string name="sms">一线牵，心系你我，心系万千,下载地址****</string>
+     
+         <string name="location_fail">获取地理信息失败</string>
+    <string name="location_fail_show_default_info">获取地理信息失败,显示默认代驾信息</string>
+    <string name="unsupport_network_location">您的系统不支持网络定位</string>
 
 </resources>

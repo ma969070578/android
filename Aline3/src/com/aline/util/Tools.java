@@ -30,21 +30,21 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Parcelable;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import cn.waps.AppConnect;
 
 import com.aline.activity.R;
 import com.aline.app.App;
-import com.google.gson.internal.bind.MapTypeAdapterFactory;
 
 public class Tools {
 
@@ -60,14 +60,7 @@ public class Tools {
 	public static ExecutorService executorService = Executors
 			.newCachedThreadPool();
 
-	public static void getDevInfo(Context context) {
-		App.getInstance().networkType = Tools.getwebVersion(context);
-		App.getInstance().clientVersion = context.getResources().getString(
-				R.string.revision);
-		App.getInstance().sysVersion = android.os.Build.VERSION.RELEASE;
-		App.getInstance().mobileModel = android.os.Build.MODEL;
-		App.getInstance().appkey = Tools.getAppKey(context);
-	}
+
 
 	public static void recomment(final Activity a, final App app) {
 
@@ -135,6 +128,67 @@ public class Tools {
 			return true;
 		}
 		return false;
+	}
+	
+	// 获取设备信息
+	public static void getDevInfo(Context con) {
+
+		String clientVersion =  con.getResources().getString(
+				R.string.revision);;
+
+		App.getInstance().networkType = Tools.getwebVersion(con);
+		App.getInstance().clientVersion = clientVersion;
+		App.getInstance().sysVersion = android.os.Build.VERSION.RELEASE;
+		App.getInstance().mobileModel = android.os.Build.MODEL;
+		App.getInstance().userKey = Tools.getUserKey(con);
+		App.getInstance().telephone = Tools.getTelephone(con);
+	}
+
+	public static boolean isSupportLocation(Context con) {
+		LocationManager locationManager = (LocationManager) con
+				.getSystemService(Context.LOCATION_SERVICE);
+		List<String> providersList = locationManager.getAllProviders();
+		// for(String str :providersList){
+		// if(str.equals("network")){
+		// SystemOut.out("support");
+		// return true;
+		// }
+		// }
+		if (providersList != null && providersList.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 判断GPS是够开启
+	 * 
+	 * @param con
+	 * @return
+	 */
+	public static boolean isOpenGPS(Context con) {
+		LocationManager alm = (LocationManager) con
+				.getSystemService(Context.LOCATION_SERVICE);
+		if (alm.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean opGps(final Activity con) {
+		String str = Settings.Secure.getString(con.getContentResolver(),
+				Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+		if (str.contains("gps")) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	// 判断一个字符串是数字
+	public static boolean isNum(String str) {
+		return str.matches("^[-+]?(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)$");
 	}
 
 	public static boolean isConnectInternet(Activity inContext) {
@@ -284,7 +338,7 @@ public class Tools {
 		editor.commit();
 	}
 
-	public static String getAppKey(Context context) {
+	public static String getUserKey(Context context) {
 		TelephonyManager tm = (TelephonyManager) context
 				.getSystemService(Context.TELEPHONY_SERVICE);
 		String appkey = "";
