@@ -197,7 +197,7 @@ public class TimeTools {
 	}	
 	  // member 转化时间
 	public static String getStringTime(String time){
-			if(!Tools.isNull(time)){
+			if(!EdjTools.isNull(time)){
 				String[] strs=time.split("[.]");
 				return strs[0];
 			}else {

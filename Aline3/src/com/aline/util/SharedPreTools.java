@@ -18,25 +18,25 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import com.aline.app.App;
+import com.aline.app.EdjApp;
 
 public class SharedPreTools {
 	
 	//单键值存储----------------------------
 	public static String readShare(String sharename,String key) {
-		SharedPreferences user =  App.getInstance().getSharedPreferences(sharename,0);
+		SharedPreferences user =  EdjApp.getInstance().getSharedPreferences(sharename,0);
 		return user.getString(key, "");
 	}
 
 	public static void writeShare(String sharename,String key,String value ) {
-		SharedPreferences user = App.getInstance().getSharedPreferences(sharename, 0);
+		SharedPreferences user = EdjApp.getInstance().getSharedPreferences(sharename, 0);
 		Editor editor = user.edit();
 		editor.putString(key, value);
 		editor.commit();
 	}  
 	
 	public static void removeShare(String sharename,String key ) {
-		SharedPreferences user = App.getInstance().getSharedPreferences(sharename, 0);
+		SharedPreferences user = EdjApp.getInstance().getSharedPreferences(sharename, 0);
 		Editor editor = user.edit();
 		editor.remove(key);
 		editor.commit();
@@ -45,7 +45,7 @@ public class SharedPreTools {
 	
 	//多键值存储
 	public static void writegroup(String sharename,String key,String value) {
-		SharedPreferences call = App.getInstance().getSharedPreferences(sharename, 0);
+		SharedPreferences call = EdjApp.getInstance().getSharedPreferences(sharename, 0);
 		String group = call.getString(key, "");
 		if (group.indexOf(value) < 0) {
 			String newgroup = group + "," + key;
@@ -56,7 +56,7 @@ public class SharedPreTools {
 	}
 
 	public static void removegroup(String sharename,String key) {
-		SharedPreferences call =  App.getInstance().getSharedPreferences(sharename, 0);
+		SharedPreferences call =  EdjApp.getInstance().getSharedPreferences(sharename, 0);
 		String group = call.getString(key, "");
 		String newgroup = group.replace("," + key, "");
 		Editor editor = call.edit();
@@ -71,7 +71,7 @@ public class SharedPreTools {
 	 * @param key
 	 */
 	public static void removeObjectPre(String per_name,String key){
-		SharedPreferences loginUserInfo = App.getInstance().
+		SharedPreferences loginUserInfo = EdjApp.getInstance().
 				getSharedPreferences(per_name, Context.MODE_APPEND);
 		Editor preEd = null;
 		if(loginUserInfo != null){
@@ -100,7 +100,7 @@ public class SharedPreTools {
 	 * @param vaule
 	 */
 	public static void saveObjectPre(String per_name,String key,Object vaule){
-		SharedPreferences loginUserInfo = App.getInstance().
+		SharedPreferences loginUserInfo = EdjApp.getInstance().
 				getSharedPreferences(per_name, Context.MODE_APPEND);
 		Editor preEd = null;
 		if(loginUserInfo != null){
@@ -130,7 +130,7 @@ public class SharedPreTools {
 	 * @param oblist
 	 */
 	public static <T> List<T> readAllObjectPre(String per_name){
-		  SharedPreferences loginUserInfo = App.getInstance().
+		  SharedPreferences loginUserInfo = EdjApp.getInstance().
 				  getSharedPreferences(per_name, Context.MODE_APPEND);
 		  Map<String, ?> maps = loginUserInfo.getAll();//取出所有数据
 	      List<T> oblist = new ArrayList<T>();

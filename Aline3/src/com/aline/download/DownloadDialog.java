@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.util.Log;
 
-import com.aline.util.Tools;
+import com.aline.util.EdjTools;
 
 class DownloadDialog 
 {
@@ -16,7 +16,7 @@ class DownloadDialog
 	
 	public DownloadDialog(Context context,String title,String message) 
 	{
-		if(Tools.isDebug)Log.i("DownloadDialog", "C'tor()");
+		if(EdjTools.isDebug)Log.i("DownloadDialog", "C'tor()");
 		
 		mContext = context;
 		
@@ -36,28 +36,28 @@ class DownloadDialog
 	
 	public void show()
 	{
-		if(Tools.isDebug)Log.i("DownloadDialog", "show()");
+		if(EdjTools.isDebug)Log.i("DownloadDialog", "show()");
 		
 		mProgressDialog.show();
 	}
 	
 	public void cancel()
 	{
-		if(Tools.isDebug)Log.i("DownloadDialog", "cancel()");
+		if(EdjTools.isDebug)Log.i("DownloadDialog", "cancel()");
 		
 		mProgressDialog.cancel();
 	}
 	
 	public void updateState(DownloadStates downloadState,String message)
 	{
-		if(Tools.isDebug)Log.i("DownloadDialog", "updateState(DownloadStates )");
+		if(EdjTools.isDebug)Log.i("DownloadDialog", "updateState(DownloadStates )");
 		
 		updateState(downloadState, -1,null,message);
 	}
 	
 	public void updateState(DownloadStates downloadState, int progressValue,String data,String message)
 	{
-		if(Tools.isDebug)Log.i("DownloadDialog", downloadState+"updateState(DownloadStates, progressValue)"+data);
+		if(EdjTools.isDebug)Log.i("DownloadDialog", downloadState+"updateState(DownloadStates, progressValue)"+data);
 		
 	    switch(downloadState) 
 	    {

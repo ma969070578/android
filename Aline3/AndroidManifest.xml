@@ -1,174 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aline.activity"   
+    package="com.aline.activity"
     android:versionCode="1"
-    android:versionName="1.00"
-    >
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="10" />
-  
-    
+    android:versionName="1.00" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="10" />
+
     <application
+        android:name="com.aline.app.EdjApp"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:name="com.aline.app.App" >
-        
-        
-        <!-- For test only 测试的主程序-->
+        android:label="@string/app_name" >
+
+        <!-- For test only 测试的主程序 -->
         <activity
-            android:name=".MainTabActivity"
+            android:name="com.aline.lbs.MainTabActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        
-        
-         <activity 
-        	android:name=".BMapActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-		 <activity 
-        	android:name=".ScrollLayoutActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-         <activity 
-        	android:name=".NewsActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-         <activity 
-        	android:name=".MyInfoActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-         
-         
-          <activity 
-        	android:name=".EditTextActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-         
-         <activity  
-            android:name=".City_SelectionActivity"
-            android:theme="@android:style/Theme.NoTitleBar"/>
-        <activity 
-        	android:name=".MaxCardActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-        
-        
-         
-         <activity 
-        	android:name=".InfosActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-         <activity 
-        	android:name=".SearchActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-         <activity 
-        	android:name=".MoreActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-         
-       <!-- For test only 测试高级功能 -->
-       <activity android:name="com.example.jpushdemo.PushSetActivity" android:label="@string/app_name"></activity>
+        <activity
+            android:name="com.aline.lbs.BMapActivity"
+             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.aline.lbs.ScrollLayoutActivity"
+             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.aline.lbs.NewsActivity"
+             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.aline.lbs.MyInfoActivity"
+             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.aline.lbs.EditTextActivity"
+             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.aline.lbs.City_SelectionActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.aline.lbs.MaxCardActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.aline.lbs.InfosActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.aline.lbs.SearchActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.aline.lbs.MoreActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- For test only 测试高级功能 -->
+        <activity
+            android:name="com.example.jpushdemo.PushSetActivity"
+            android:label="@string/app_name" >
+        </activity>
         <!-- For test only 测试设置 -->
-       <activity android:name="com.example.jpushdemo.SettingActivity" android:label="@string/app_name"></activity>
+        <activity
+            android:name="com.example.jpushdemo.SettingActivity"
+            android:label="@string/app_name" >
+        </activity>
         <!-- For test only 测试状态通知栏，需要打开的Activity -->
         <activity android:name="com.example.jpushdemo.TestActivity" >
             <intent-filter>
                 <action android:name="jpush.testAction" />
+
                 <category android:name="jpush.testCategory" />
             </intent-filter>
-        </activity>  
+        </activity>
 
-     
-        <!-- Required SDK核心功能-->
+        <!-- Required SDK核心功能 -->
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden" >
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.aline.activity" />
             </intent-filter>
         </activity>
-        <!-- Required  SDK核心功能-->
+        <!-- Required  SDK核心功能 -->
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
             android:exported="false" >
         </service>
-    
-        
-        <!-- Required SDK 核心功能-->
+
+        <!-- Required SDK 核心功能 -->
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
                 <action android:name="cn.jpush.android.intent.PushService" />
                 <action android:name="cn.jpush.android.intent.PUSH_TIME" />
-                
             </intent-filter>
         </service>
-        
-        <!-- Required SDK核心功能-->
+
+        <!-- Required SDK核心功能 -->
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true" >
-             <intent-filter android:priority="1000">
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
+            <intent-filter android:priority="1000" >
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+ <!-- Required  显示通知栏 -->
                 <category android:name="com.aline.activity" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
-             <!-- Optional -->
+            <!-- Optional -->
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
                 <data android:scheme="package" />
             </intent-filter>
-   
         </receiver>
-        
-        <!-- Required SDK核心功能-->
+
+        <!-- Required SDK核心功能 -->
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
-        
-        <!-- User defined.  For test only  用户自定义的广播接收器-->
+
+        <!-- User defined.  For test only  用户自定义的广播接收器 -->
         <receiver
             android:name="com.example.jpushdemo.MyReceiver"
-            android:enabled="true">
+            android:enabled="true" >
             <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
-                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />  
-                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+ <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+ <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+ <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+ <!-- Required  用户打开自定义通知栏的intent -->
                 <category android:name="com.aline.activity" />
             </intent-filter>
         </receiver>
- 
-        
+
         <!-- Required  . Enable it you can get statistics data with channel -->
-        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="a59219778be8585b98c730b8" /> <!--  </>值来自开发者平台取得的AppKey-->
-        
-        
-        
-        
-        
-        <activity android:name="cn.waps.OffersWebView" android:configChanges="keyboardHidden|orientation"/>
-<!--以下属性为应用ID,从万普后台获取-->
-<meta-data android:name="WAPS_ID" android:value="943b95a1bce60c1562e1412770ecea5f" />
-<!--以下属性为分发渠道ID,编码表参见本文档末附表-->
-<meta-data android:name="WAPS_PID" android:value="WAPS" />
-        
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="a59219778be8585b98c730b8" />
+ <!-- </>值来自开发者平台取得的AppKey -->
+
+
+        <!-- wanpu sdk -->
+
+        <activity
+            android:name="cn.waps.OffersWebView"
+            android:configChanges="keyboardHidden|orientation" />
+        <!-- 以下属性为应用ID,从万普后台获取 -->
+        <meta-data
+            android:name="WAPS_ID"
+            android:value="943b95a1bce60c1562e1412770ecea5f" />
+        <!-- 以下属性为分发渠道ID,编码表参见本文档末附表 -->
+        <meta-data
+            android:name="WAPS_PID"
+            android:value="WAPS" />
+
+        <!-- share sdk -->
+
+        <activity
+            android:name="com.aline.lbs.TestShare"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="cn.sharesdk.framework.ShareSDKUIShell"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+
+            <!--
+            	Adapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter的类，
+            	这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。 
+            	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
+            -->
+            <!-- <meta-data android:name="Adapter" android:value="cn.sharesdk.demo.MyAdapter" /> -->
+        </activity>
+        <activity
+            android:name="cn.sharesdk.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
-    
-    
-      <permission
+
+    <permission
         android:name="com.aline.activity.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
-  
-    <!-- Required  一些系统要求的权限，如访问网络等-->
+
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="com.aline.activity.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -179,10 +226,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>  
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
-    
-    
     <!-- Optional for location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -190,14 +235,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    
-    
     <uses-permission android:name="android.permission.GET_TASKS" />
-    
-      <!-- sdcard操作允许 -->  
-   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>  
-   <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>  
-    
-    
-</manifest>
 
+    <!-- sdcard操作允许 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+</manifest>

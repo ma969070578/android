@@ -1,21 +1,20 @@
-package com.aline.activity;
+package com.aline.lbs;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-public class FriendsActivity extends Activity{
+public class SelectSexActivity extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-//		this.setContentView(R.layout.friends_list);
 	}
 
 	@Override
-	protected void onResume() {
+	protected void onPause() {
 		// TODO Auto-generated method stub
-		super.onResume();
+		super.onPause();
 	}
 
 	@Override
@@ -29,6 +28,9 @@ public class FriendsActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onStop();
 	}
+	
+	
+
 	
 
 }

@@ -1,4 +1,4 @@
-package com.aline.activity;
+package com.aline.lbs;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,10 +14,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.aline.app.App;
+import com.aline.activity.R;
+import com.aline.app.EdjApp;
 import com.aline.ui.OnViewChangeListener;
 import com.aline.ui.ScrollLayout;
-import com.aline.util.Tools;
+import com.aline.util.EdjTools;
 //http://blog.csdn.net/tangren03/article/details/7752468
 public class ScrollLayoutActivity extends Activity implements OnViewChangeListener{
    
@@ -31,13 +32,13 @@ public class ScrollLayoutActivity extends Activity implements OnViewChangeListen
 	private LinearLayout leftLayout;
 	private LinearLayout rightLayout;
 	private LinearLayout animLayout;
-	App mApp;
+	EdjApp mApp;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mApp =(App) this.getApplication();
-		if(Tools.readFlag(ScrollLayoutActivity.this)!="2"){
+		mApp =(EdjApp) this.getApplication();
+		if(EdjTools.readFlag(ScrollLayoutActivity.this)!="2"){
 			setContentView(R.layout.main);
 			System.out.println("1111111111");
 			initView();
@@ -47,7 +48,7 @@ public class ScrollLayoutActivity extends Activity implements OnViewChangeListen
 			intent.setClass(ScrollLayoutActivity.this, MainTabActivity.class);
 //			mApp.userKey=Tools.getUserKey(this);
 			startActivity(intent);
-			Tools.writeFlag("2", this);
+			EdjTools.writeFlag("2", this);
 			
 		}
 	}
@@ -134,7 +135,7 @@ public class ScrollLayoutActivity extends Activity implements OnViewChangeListen
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
 		
-		Tools.appExit(this);
+		EdjTools.appExit(this);
 		return super.onKeyDown(keyCode, event);
 	}
 	

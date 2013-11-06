@@ -1,4 +1,4 @@
-package com.aline.activity;
+package com.aline.lbs;
 
 
 import java.io.UnsupportedEncodingException;
@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.aline.activity.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;

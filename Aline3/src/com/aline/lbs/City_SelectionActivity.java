@@ -1,4 +1,4 @@
-package com.aline.activity;
+package com.aline.lbs;
 
 //http://blog.csdn.net/forsta/article/details/7487229
 import java.io.File;
@@ -9,8 +9,9 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.aline.app.App;
-import com.aline.util.Tools;
+import com.aline.activity.R;
+import com.aline.app.EdjApp;
+import com.aline.util.EdjTools;
 
 import android.app.Activity;
 import android.content.Context;
@@ -98,8 +99,8 @@ public class City_SelectionActivity extends Activity {
     		@Override
     		public void onClick(View v) {
     			// TODO Auto-generated method stub
-    			if(!Tools.isNull(cityname))
-    			Tools.writeShare(City_SelectionActivity.this, "user_address", cityname);
+    			if(!EdjTools.isNull(cityname))
+    			EdjTools.writeShare(City_SelectionActivity.this, "user_address", cityname);
     			
     			Toast.makeText(getApplicationContext(), cityname, 2000).show();
     			finish();

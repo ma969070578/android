@@ -34,8 +34,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aline.activity.R;
-import com.aline.app.App;
-import com.aline.util.Tools;
+import com.aline.app.EdjApp;
+import com.aline.util.EdjTools;
 
 /**
  * @author Administrator
@@ -67,11 +67,11 @@ public class AutoUpdater {
 			progress.setMessage("正在检查更新...");
 			progress.show();
 		}
-		Tools.executorService.submit(new Runnable() {
+		EdjTools.executorService.submit(new Runnable() {
 			@Override
 			public void run() {
 
-				String url = "http://" + Tools.HOST + "/"
+				String url = "http://" + EdjTools.HOST + "/"
 						+ tcontext.getText(R.string.update).toString();
 				String revision = tcontext.getText(R.string.revision)
 						.toString();
@@ -103,7 +103,7 @@ public class AutoUpdater {
 		} else {
 			checkURL = checkURL + "?v=" + curVersion;
 		}
-		if (Tools.isDebug)
+		if (EdjTools.isDebug)
 			System.out.println("checkURL:" + checkURL);
 		HttpClient client = new DefaultHttpClient();
 		HttpGet get = new HttpGet(checkURL);
@@ -213,7 +213,7 @@ public class AutoUpdater {
 								DecimalFormat df = new DecimalFormat("0.00");
 								String fileLen_str = df.format(fileLen);
 								String readLen_str = df.format(readLen);
-								if (Tools.isDebug)
+								if (EdjTools.isDebug)
 									Log.i("AutoUpdater", "msg.arg1" + msg.arg1
 											+ "msg.arg2" + msg.arg2);
 								// String
@@ -311,7 +311,7 @@ public class AutoUpdater {
 
 	public void fail() {
 		// pBar.cancel();
-		Toast.makeText(App.getInstance(), "更新失败！", Toast.LENGTH_LONG).show();
+		Toast.makeText(EdjApp.getInstance(), "更新失败！", Toast.LENGTH_LONG).show();
 		/*
 		 * Intent intent = new Intent(this, InitActivity.class);
 		 * startActivity(intent); finish();
@@ -332,7 +332,7 @@ public class AutoUpdater {
 					if (activity.isFinishing()) {
 						return;
 					}
-					LayoutInflater inflater = LayoutInflater.from(App
+					LayoutInflater inflater = LayoutInflater.from(EdjApp
 							.getInstance());
 					// LayoutInflater inflater = getLayoutInflater();;
 					View view = inflater.inflate(R.layout.updata_dialog, null);
@@ -362,8 +362,8 @@ public class AutoUpdater {
 											mDownloadHandler.sendMessage(msg);
 
 											downFile(updateUrl);
-											App.getInstance().isStartCheckUpdata = false;
-											App.getInstance().isAutoUpate = true;
+											EdjApp.getInstance().isStartCheckUpdata = false;
+											EdjApp.getInstance().isAutoUpate = true;
 										}
 									})
 							.setNegativeButton(
@@ -374,8 +374,8 @@ public class AutoUpdater {
 												int whichButton) {
 											// 点击"取消"按钮之后退出程序
 											dialog.cancel();
-											App.getInstance().isStartCheckUpdata = false;
-											App.getInstance().isAutoUpate = true;
+											EdjApp.getInstance().isStartCheckUpdata = false;
+											EdjApp.getInstance().isAutoUpate = true;
 											// Intent intent = new
 											// Intent(BaseActivity.this,
 											// InitActivity.class);

@@ -37,9 +37,9 @@ import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
 
-import com.aline.app.App;
+import com.aline.app.EdjApp;
 import com.aline.util.Constants;
-import com.aline.util.Tools;
+import com.aline.util.EdjTools;
 
 public class LocationStation {
 	private static final String TAG = "LocationStation";
@@ -49,7 +49,7 @@ public class LocationStation {
 	int count;
 	PhoneStateListener listener;
 	private static final int CHECK_INTERVAL = 1000 * 30;
-	App app;
+	EdjApp app;
 	// 变量定义
 	public static LocationManager locationManager;
     public static LocationListener gpsListener = null;
@@ -65,7 +65,7 @@ public class LocationStation {
 	double accuracy;
 
     
-	public static LocationStation getInstance(App edApp) {
+	public static LocationStation getInstance(EdjApp edApp) {
 		if (instance == null) {
 			instance = new LocationStation(edApp);
 		}
@@ -74,7 +74,7 @@ public class LocationStation {
 	}
 	private LocationStation(){
 	}
-	public LocationStation(App edApp){
+	public LocationStation(EdjApp edApp){
 		app = edApp;
 	}
 	 public void timeOut(long outTime,final Context ct){
@@ -119,7 +119,7 @@ public class LocationStation {
 		if(locationManager != null){
 			locationManager = null;
 		}
-		if(Tools.isDebug)Log.v(TAG, "gpsCancel");
+		if(EdjTools.isDebug)Log.v(TAG, "gpsCancel");
 	 }
 	 public void initGpsTimeOut(long outTime){
 		 gpsTimeOut =  new Timer();
@@ -172,7 +172,7 @@ public class LocationStation {
         lac = new int[10];
         locationHandler.sendEmptyMessage(0);
         timeOut(outTime,ct);
-		if(Tools.getNetworkType(app)!=Tools.NET_NOT_AVAILABLE){
+		if(EdjTools.getNetworkType(app)!=EdjTools.NET_NOT_AVAILABLE){
 		  update(ct);
 		}else{
 		  broadcastGetLocFailed(Constants.LBS_INTENT_ACTION_NETWORK_LOCATION_FAILED);
@@ -183,19 +183,19 @@ public class LocationStation {
 		@Override
 		public void onLocationChanged(Location location) {
 			// Called when a new location is found by the location provider.
-			if(Tools.isDebug)Log.v(TAG, "Got New Location of provider:"
+			if(EdjTools.isDebug)Log.v(TAG, "Got New Location of provider:"
 					+ location.getProvider());
 			if (currentLocation != null) {
 				if (isBetterLocation(location, currentLocation)) {
-					if(Tools.isDebug)Log.v(TAG, "It's a better location");
+					if(EdjTools.isDebug)Log.v(TAG, "It's a better location");
 					currentLocation = location;
 //					showLocation(location);
 					
 				} else {
-					if(Tools.isDebug)Log.v(TAG, "Not very good!");
+					if(EdjTools.isDebug)Log.v(TAG, "Not very good!");
 				}
 			} else {
-				if(Tools.isDebug)Log.v(TAG, "It's first location");
+				if(EdjTools.isDebug)Log.v(TAG, "It's first location");
 				currentLocation = location;
 //				showLocation(location);
 				
@@ -233,11 +233,11 @@ public class LocationStation {
 	private void showLocation(Location location) {
 		if(location!=null){
 			// 纬度
-			if(Tools.isDebug)Log.v(TAG, "Latitude:" + location.getLatitude());
+			if(EdjTools.isDebug)Log.v(TAG, "Latitude:" + location.getLatitude());
 			// 经度
-			if(Tools.isDebug)Log.v(TAG, "Longitude:" + location.getLongitude());
+			if(EdjTools.isDebug)Log.v(TAG, "Longitude:" + location.getLongitude());
 			// 精确度
-			if(Tools.isDebug)Log.v(TAG, "Accuracy:" + location.getAccuracy());
+			if(EdjTools.isDebug)Log.v(TAG, "Accuracy:" + location.getAccuracy());
 			if(location.getLatitude() != 0&&location.getLongitude() != 0){
 //				App.lat = location.getLatitude();
 //				App.lon = location.getLongitude();
@@ -254,7 +254,7 @@ public class LocationStation {
 
 	private void registerLocationListener() {
 		if(networkListner == null&&locationManager!=null){
-			if(Tools.isDebug)Log.v(TAG, "register"+locationManager.getAllProviders());
+			if(EdjTools.isDebug)Log.v(TAG, "register"+locationManager.getAllProviders());
 			
 			networkListner = new MyLocationListner();
 			if(networkListner!=null&&locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
@@ -339,10 +339,10 @@ public class LocationStation {
 //  			return;
   			String tmcc=manager.getNetworkOperator().substring(0, 3);
   			String tmnc=manager.getNetworkOperator().substring(3, 5);
-  			if(Tools.isNum(tmnc)){
+  			if(EdjTools.isNum(tmnc)){
   				mcc = Integer.valueOf(tmcc);
   			}
-  			if(Tools.isNum(tmnc)){
+  			if(EdjTools.isNum(tmnc)){
   				mnc = Integer.valueOf(tmnc);
   			}
 //			mcc = Integer.valueOf(manager.getNetworkOperator().substring(0, 3));
@@ -369,11 +369,11 @@ public class LocationStation {
 				lac[0] = cdmaCl.getBaseStationId();
 				ci[0] = cdmaCl.getSystemId();
 				int networkId = cdmaCl.getNetworkId();
-				if(Tools.isDebug)Log.i(TAG, "networkid:" + networkId);
+				if(EdjTools.isDebug)Log.i(TAG, "networkid:" + networkId);
 				cdma_lat = (double)cdmaCl.getBaseStationLatitude()/14400;
-				if(Tools.isDebug)Log.i(TAG, "lat is:" + cdma_lat);
+				if(EdjTools.isDebug)Log.i(TAG, "lat is:" + cdma_lat);
 				cdma_lng = (double)cdmaCl.getBaseStationLongitude()/14400;
-				if(Tools.isDebug)Log.i(TAG, "lng is:" + cdma_lng);
+				if(EdjTools.isDebug)Log.i(TAG, "lng is:" + cdma_lng);
 				Location location = new Location("cdma");
 				location.setLatitude(cdma_lat);
 				location.setLongitude(cdma_lng);
@@ -387,7 +387,7 @@ public class LocationStation {
 			}
 			//手机不支持基站定位
   		}
-		Tools.executorService.submit(new Runnable() {
+		EdjTools.executorService.submit(new Runnable() {
 			@Override
 			public void run() {
 //				Looper.prepare();
@@ -425,7 +425,7 @@ public class LocationStation {
 							 List<ScanResult> wifiList = wm.getScanResults();
 							 for (int i = 0; i < wifiList.size(); i++) 
 					            {
-								 if(Tools.isDebug)Log.e("wifi",wifiList.get(i).toString());
+								 if(EdjTools.isDebug)Log.e("wifi",wifiList.get(i).toString());
 					            }
 //							 WifiInfo info = wm.getConnectionInfo();
 //							 String mac = info.getMacAddress();
@@ -468,7 +468,7 @@ public class LocationStation {
 						result = br.readLine();
 					}
 					result_location = sb.toString();
-					if(Tools.isDebug)System.out.println("result_location:"+result_location);
+					if(EdjTools.isDebug)System.out.println("result_location:"+result_location);
 					data = new JSONObject(sb.toString());
 					data = (JSONObject) data.opt("location");
 					if(data != null){
@@ -490,7 +490,7 @@ public class LocationStation {
 								str = (String)data.opt("country")+(String)data.opt("region");
 							}
 							str = (String)data.opt("city");
-							if(Tools.isDebug)
+							if(EdjTools.isDebug)
 							System.out.println("str:"+str);
 							if(str!=null&&!str.equals(""))
 							app.city = str;
@@ -522,7 +522,7 @@ public class LocationStation {
 //					if(la != 0&& lo != 0){
 //						Utils.saveLocationData(ct, la, lo);
 //					}
-					if(Tools.isDebug)
+					if(EdjTools.isDebug)
 						Log.i(TAG, "handle data cost time is:" + (System.currentTimeMillis() - rspe) + "ms");
 
 

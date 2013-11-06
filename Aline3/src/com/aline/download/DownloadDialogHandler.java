@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.aline.util.Tools;
+import com.aline.util.EdjTools;
 
 class DownloadDialogHandler extends Handler 
 {
@@ -13,7 +13,7 @@ class DownloadDialogHandler extends Handler
 	
 	public DownloadDialogHandler(DownloadDialog downloadDialog) 
 	{
-		if(Tools.isDebug)Log.i("DownloadDialogHandler", "C'tor()");
+		if(EdjTools.isDebug)Log.i("DownloadDialogHandler", "C'tor()");
 		
 		mDownloadDialog = downloadDialog;
 	}
@@ -21,7 +21,7 @@ class DownloadDialogHandler extends Handler
 	@Override
 	public void handleMessage(Message msg) 
 	{
-		if(Tools.isDebug)Log.i("DownloadDialogHandler", "handleMessage()");
+		if(EdjTools.isDebug)Log.i("DownloadDialogHandler", "handleMessage()");
 		
 		super.handleMessage(msg);
 		

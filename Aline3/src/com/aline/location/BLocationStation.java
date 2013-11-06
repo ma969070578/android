@@ -13,10 +13,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.aline.activity.R;
-import com.aline.app.App;
+import com.aline.app.EdjApp;
 import com.aline.util.Constants;
 import com.aline.util.SystemOut;
-import com.aline.util.Tools;
+import com.aline.util.EdjTools;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -74,7 +74,7 @@ public class BLocationStation {
      private int  bOutTime= 1000*25;
 //    private LocationResultInterface locationResultInterface;
 	private  BLocationStation(Context context){
-		  this.tcontext = App.getInstance();
+		  this.tcontext = EdjApp.getInstance();
 		  Log.i(TAG, "init BLocationStation");
 		  if(mBMapMan == null){
 		     mBMapMan = new BMapManager(tcontext);
@@ -156,12 +156,12 @@ public class BLocationStation {
 	            }else {  
 	            	 SystemOut.out("baidu loaction sucess");
 //	            	unRegisterLocationListener();
-	                App.getInstance().city =result.addressComponents.city;
-	                App.getInstance().address=result.strAddr;
+	                EdjApp.getInstance().city =result.addressComponents.city;
+	                EdjApp.getInstance().address=result.strAddr;
 	                if(result.addressComponents.street==null||result.addressComponents.street.equals("")){
-	                      App.getInstance().street =result.addressComponents.district;
+	                      EdjApp.getInstance().street =result.addressComponents.district;
 	                }else{
-	                	  App.getInstance().street =result.addressComponents.street;	
+	                	  EdjApp.getInstance().street =result.addressComponents.street;	
 	                }
 	                SystemOut.out("city111="+(result.addressComponents.city+result.addressComponents.street));
 	                isLocallocation=false;
@@ -245,7 +245,7 @@ public class BLocationStation {
 	
 	    
 	public void registerLocationListener() {
-	  if(!Tools.isSupportLocation(tcontext)){
+	  if(!EdjTools.isSupportLocation(tcontext)){
 		  SystemOut.out("unsupport 提示");
 		  handler.sendEmptyMessage(UNSUPPORT_NETWORK);
 		  return;
@@ -427,7 +427,7 @@ public class BLocationStation {
 //							map.put("osversion",App.getInstance().sysVersion);
 //							map.put("networktype",App.getInstance().networkType);
 //							map.put("errortype","0");
-							if (Tools.checkNetworkAvailable1(tcontext)){
+							if (EdjTools.checkNetworkAvailable1(tcontext)){
 //							 HttpUtil.post(url, map, "hhh", "utf-8");
 							}
 						}
@@ -509,12 +509,12 @@ public class BLocationStation {
 	                    int longitude = (int) (100000 * ll[0]);  
 	                    int latitude = (int) (100000 * ll[1]);  
 
-	                    App.getInstance().lon=longitude;
-	                    App.getInstance().lat=latitude;
-	                    App.getInstance().glon=(int)(location.getLongitude()*100000);
-	                    App.getInstance().glat=(int)(location.getLatitude()*100000);
-	                    App.getInstance().userKey = Tools.getUserKey(tcontext);
-	                    App.getInstance().telephone = Tools.getTelephone(tcontext);
+	                    EdjApp.getInstance().lon=longitude;
+	                    EdjApp.getInstance().lat=latitude;
+	                    EdjApp.getInstance().glon=(int)(location.getLongitude()*100000);
+	                    EdjApp.getInstance().glat=(int)(location.getLatitude()*100000);
+	                    EdjApp.getInstance().userKey = EdjTools.getUserKey(tcontext);
+	                    EdjApp.getInstance().telephone = EdjTools.getTelephone(tcontext);
 	                    
 //	                    Toast.makeText(InitActivity.this, "获取坐标："+App.getInstance().lon+","+App.getInstance().lat, Toast.LENGTH_LONG).show();
 	                    GeoPoint point = new GeoPoint(latitude*10, longitude*10);
@@ -586,22 +586,22 @@ public class BLocationStation {
 				int longitude = (int) (100000 * ll[0]);
 				int latitude = (int) (100000 * ll[1]);
 				
-				App.getInstance().lon = longitude;
-				App.getInstance().lat = latitude;
-				App.getInstance().glon = longitude;
-				App.getInstance().glat = latitude;
-				App.getInstance().userKey = Tools.getUserKey(tcontext);
-				App.getInstance().telephone = Tools.getTelephone(tcontext);
+				EdjApp.getInstance().lon = longitude;
+				EdjApp.getInstance().lat = latitude;
+				EdjApp.getInstance().glon = longitude;
+				EdjApp.getInstance().glat = latitude;
+				EdjApp.getInstance().userKey = EdjTools.getUserKey(tcontext);
+				EdjApp.getInstance().telephone = EdjTools.getTelephone(tcontext);
                  
 	           	 SystemOut.out("baidu loaction sucess");
 	//         	unRegisterLocationListener();
-	           	if(!Tools.isNull(location.getCity()))
-	             App.getInstance().city =location.getCity();
-	           	if(!Tools.isNull(location.getAddrStr()))
-	             App.getInstance().address=location.getAddrStr();
+	           	if(!EdjTools.isNull(location.getCity()))
+	             EdjApp.getInstance().city =location.getCity();
+	           	if(!EdjTools.isNull(location.getAddrStr()))
+	             EdjApp.getInstance().address=location.getAddrStr();
 	             
-	             if(!Tools.isNull(location.getStreet())&&Tools.isNull(location.getAddrStr())){
-	                   App.getInstance().street =location.getStreet();
+	             if(!EdjTools.isNull(location.getStreet())&&EdjTools.isNull(location.getAddrStr())){
+	                   EdjApp.getInstance().street =location.getStreet();
 	                   
 	             }
 	             

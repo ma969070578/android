@@ -6,14 +6,14 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 
-import com.aline.app.App;
-import com.aline.util.Tools;
+import com.aline.app.EdjApp;
+import com.aline.util.EdjTools;
 
 public class LocationStationService extends Service {
 
 	public static Handler mHandler;
 	private LocationStation ls;
-	App app;
+	EdjApp app;
 	static Context conText;
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -22,7 +22,7 @@ public class LocationStationService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		app = App.getInstance();
+		app = EdjApp.getInstance();
 
 	}
 	
@@ -35,7 +35,7 @@ public class LocationStationService extends Service {
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
-		if (Tools.isDebug) {
+		if (EdjTools.isDebug) {
 			if (!BLocationStation.getInstance(app).isLocallocation) {
 				System.out.println("启动定位服务、、、、、、");
 			}

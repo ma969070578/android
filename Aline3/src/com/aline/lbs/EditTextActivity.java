@@ -1,6 +1,7 @@
-package com.aline.activity;
+package com.aline.lbs;
 
-import com.aline.util.Tools;
+import com.aline.activity.R;
+import com.aline.util.EdjTools;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -48,7 +49,7 @@ protected void onCreate(Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
 			String content=edit.getText().toString();
 //			Toast.makeText(EditTextActivity.this, content, Toast.LENGTH_SHORT).show();
-			Tools.writeShare(EditTextActivity.this, "user_name", content);
+			EdjTools.writeShare(EditTextActivity.this, "user_name", content);
 			finish();
 		}
 	});

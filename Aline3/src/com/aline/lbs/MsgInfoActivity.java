@@ -1,4 +1,4 @@
-package com.aline.activity;
+package com.aline.lbs;
 
 import android.app.Activity;
 import android.os.Bundle;

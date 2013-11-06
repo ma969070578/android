@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.location.Location;
 import android.util.Log;
 
-import com.aline.app.App;
-import com.aline.util.Tools;
+import com.aline.app.EdjApp;
+import com.aline.util.EdjTools;
 import com.example.jpushdemo.MainActivity;
 
 
@@ -31,11 +31,11 @@ public class BdLocator implements LocationListener {
 		
 		Intent nIntent = new Intent(activity, MainActivity.class);
 
-		App App = (App) activity.getApplicationContext();
+		EdjApp App = (EdjApp) activity.getApplicationContext();
 		App.lon = (int) (ll[0] * 100000);
 		App.lat = (int) (ll[1] * 100000);
 		App.city = "北京市";
-		App.userKey = Tools.getUserKey(context);
+		App.userKey = EdjTools.getUserKey(context);
 		
 		Log.i("INIT", App.lon+","+App.lat+":"+App.glon+","+App.glat);
 		activity.startActivity(nIntent);

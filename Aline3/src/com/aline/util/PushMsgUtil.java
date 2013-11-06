@@ -31,10 +31,10 @@ public class PushMsgUtil {
 	public static final String PUSH_URL = "http://api.jpush.cn:8800/sendmsg/sendmsg";
 	
 	public static int pushMsg(String msg) {
-		BasicNameValuePair name = new BasicNameValuePair("username", Tools.pushusername);  //用户名
-		int msendno=Tools.getSendNo();
+		BasicNameValuePair name = new BasicNameValuePair("username", EdjTools.pushusername);  //用户名
+		int msendno=EdjTools.getSendNo();
 		BasicNameValuePair sendno = new BasicNameValuePair("sendno", msendno+"");  // 发送编号。由开发者自己维护，标识一次发送请求
-		BasicNameValuePair appkeys = new BasicNameValuePair("appkeys", Tools.AppKey);  // 待发送的应用程序(appKey)，只能填一个。
+		BasicNameValuePair appkeys = new BasicNameValuePair("appkeys", EdjTools.AppKey);  // 待发送的应用程序(appKey)，只能填一个。
 		BasicNameValuePair receiver_type = new BasicNameValuePair("receiver_type", "4");  
 		//验证串，用于校验发送的合法性。
 		BasicNameValuePair verification_code = new BasicNameValuePair("verification_code", getVerificationCode(msendno));
@@ -80,8 +80,8 @@ public class PushMsgUtil {
 	
 	private static String getVerificationCode(int sendno) {
 
-		String username = Tools.pushusername;  //username 是开发者Portal帐户的登录帐户名
-		String password = Tools.pushpasswd;
+		String username = EdjTools.pushusername;  //username 是开发者Portal帐户的登录帐户名
+		String password = EdjTools.pushpasswd;
 //		int sendno = 3621;
 		int receiverType = 4;
 		String md5Password = StringUtils.toMD5(password);; //password 是开发者Portal帐户的登录密码

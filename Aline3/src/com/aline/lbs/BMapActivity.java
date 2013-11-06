@@ -1,4 +1,4 @@
-package com.aline.activity;
+package com.aline.lbs;
 
 
 
@@ -13,8 +13,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.aline.app.App;
-import com.aline.util.Tools;
+import com.aline.activity.R;
+import com.aline.app.EdjApp;
+import com.aline.util.EdjTools;
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.GeoPoint;
 import com.baidu.mapapi.LocationListener;
@@ -28,7 +29,7 @@ public class BMapActivity extends MapActivity {
     /** Called when the activity is first created. */
 	private MapView mapView;//百度地图控件
 	private BMapManager bMapManager;//百度地图的引擎
-	private String Key = "2360A4148EF0C9C9C6C3ECBF93D719299F903C01";//初始化Baidu引擎需要Key
+	private String Key = "4ABB85705129C07AD749199DA0241D6325A10474";//初始化Baidu引擎需要Key
 	private MapController mapController;//设置地图缩放的工具
 	private LocationListener mLocationListener = null;//onResume时注册此listener，onPause时需要Remove
 	private MyLocationOverlay mLocationOverlay = null;	//定位图层
@@ -36,7 +37,7 @@ public class BMapActivity extends MapActivity {
 	private LocationManager locationManager; 
 	private static final int quit = 1;
 	private static final int about = 2;
-	App mApp;
+	EdjApp mApp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -210,7 +211,7 @@ public class BMapActivity extends MapActivity {
 		// TODO Auto-generated method stub
 		
 		if(keyCode == KeyEvent.KEYCODE_BACK){
-		Tools.appExit(this);
+		EdjTools.appExit(this);
 		}
 		return super.onKeyDown(keyCode, event);
 	}

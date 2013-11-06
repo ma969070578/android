@@ -1,4 +1,4 @@
-package com.aline.activity;
+package com.aline.lbs;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,13 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.aline.app.App;
+import com.aline.activity.R;
+import com.aline.app.EdjApp;
 
 public class InfosActivity extends Activity {
 
 	private Button back_btn;
 
-	private App app;
+	private EdjApp app;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

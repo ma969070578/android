@@ -1,4 +1,6 @@
-package com.aline.activity;
+package com.aline.lbs;
+
+import com.aline.activity.R;
 
 import android.app.TabActivity;
 import android.content.Intent;

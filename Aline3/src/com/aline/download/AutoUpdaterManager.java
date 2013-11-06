@@ -3,7 +3,7 @@ package com.aline.download;
 
 import android.content.Context;
 
-import com.aline.app.App;
+import com.aline.app.EdjApp;
 
 
 /**
@@ -16,7 +16,7 @@ public class AutoUpdaterManager {
 	 private Context tcontext;
 	 
 	public AutoUpdaterManager(Context context){
-	   this.tcontext = App.getInstance();
+	   this.tcontext = EdjApp.getInstance();
 	   
 		
 	}
@@ -26,9 +26,9 @@ public class AutoUpdaterManager {
 	 */
 	private void  StartAutoCheckUpdater(){
 		 
-			 if (!App.getInstance().isAutoUpate) {
-				    if(!App.getInstance().isStartCheckUpdata){
-				    	App.getInstance().isStartCheckUpdata=true;
+			 if (!EdjApp.getInstance().isAutoUpate) {
+				    if(!EdjApp.getInstance().isStartCheckUpdata){
+				    	EdjApp.getInstance().isStartCheckUpdata=true;
 					  AutoUpdater.CheckForUpdate(tcontext, true);
 				    }
 				 

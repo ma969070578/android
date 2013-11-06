@@ -1,4 +1,4 @@
-package com.aline.activity;
+package com.aline.lbs;
 
 
 import com.baidu.mapapi.GeoPoint;
