@@ -11,11 +11,8 @@ import cn.jpush.android.api.JPushInterface;
 import cn.sharesdk.framework.ShareSDK;
 import cn.waps.AppConnect;
 
-import com.aline.location.BLocationStation;
-import com.aline.location.BLocationStation.LocationFinish;
-import com.aline.util.MyUncaughtExceptionHandler;
-import com.aline.util.SystemOut;
 import com.aline.util.EdjTools;
+import com.aline.util.MyUncaughtExceptionHandler;
 
 public class EdjApp extends Application {
 
@@ -138,7 +135,7 @@ public class EdjApp extends Application {
 	
 	
 	private void myexcatch() {
-		if(!EdjTools.isDebug)
+//		if(!EdjTools.isDebug)
 		Thread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandler(
 				EdjApp.this));
 		 

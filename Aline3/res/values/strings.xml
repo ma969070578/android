@@ -93,5 +93,7 @@
          <string name="location_fail">获取地理信息失败</string>
     <string name="location_fail_show_default_info">获取地理信息失败,显示默认代驾信息</string>
     <string name="unsupport_network_location">您的系统不支持网络定位</string>
+    
+        <string name="net_err">网络异常，请检查网络设置</string>
 
 </resources>

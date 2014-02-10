@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.aline.activity.R;
 import com.aline.util.PushMsgUtil;
 import com.aline.util.EdjTools;
+import com.example.jpushdemo.JpushClientExample;
 
 public class SearchActivity extends Activity {
 	private String msg;
@@ -60,17 +61,19 @@ public class SearchActivity extends Activity {
 		@Override
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			int code= PushMsgUtil.pushMsg(msg);
+			
+ 			JpushClientExample.testSend();
+// 			int code= PushMsgUtil.pushMsg(msg);
 			 
-			if(code==0){
-				Message m = mHandler.obtainMessage();
-				m.what = SHOW_PROMPT_SUCCESS;
-				SearchActivity.this.mHandler.sendMessage(m);
-			}else {
-				Message m = mHandler.obtainMessage();
-				m.what = SHOW_PROMPT_FAIL;
-				SearchActivity.this.mHandler.sendMessage(m);
-			}
+//			if(code==0){
+//				Message m = mHandler.obtainMessage();
+//				m.what = SHOW_PROMPT_SUCCESS;
+//				SearchActivity.this.mHandler.sendMessage(m);
+//			}else {
+//				Message m = mHandler.obtainMessage();
+//				m.what = SHOW_PROMPT_FAIL;
+//				SearchActivity.this.mHandler.sendMessage(m);
+//			}
 			return null;
 		}
 
@@ -97,4 +100,8 @@ public class SearchActivity extends Activity {
 			}
 		}
 	};
+	
+	
+	
+	
 }

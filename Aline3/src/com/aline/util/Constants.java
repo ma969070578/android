@@ -28,4 +28,8 @@ public class Constants {
 	
 	public static final String PUSH_FRINEDS_FAILED="push.failed";
 
+	public static final String CONNECTIVITY_CHANGE_ACTION = "net_change";
+
+	public static final String INTENT_ACTION_GET_ISYS = "get_isys";
+
 }

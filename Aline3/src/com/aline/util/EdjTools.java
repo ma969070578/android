@@ -56,6 +56,7 @@ public class EdjTools {
 	public static final String pushusername = "emotte";
 	public static final String pushpasswd = "123456";
 	public static final String AppKey = "a59219778be8585b98c730b8";
+	public static final String AppSecret = "e8b968b25c853df55e0e88a5";
 
 	public static ExecutorService executorService = Executors
 			.newCachedThreadPool();

@@ -10,12 +10,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.util.Log;
-
-import cn.jpush.api.StringUtils;
 
 /**
  * 调用远程api实现推送
@@ -28,7 +25,10 @@ public class PushMsgUtil {
 	private static final String LOGTAG = LogUtil.makeLogTag(PushMsgUtil.class);
 	
 //	public static final String PUSH_URL = "https://api.jpush.cn:443/sendmsg/sendmsg";
-	public static final String PUSH_URL = "http://api.jpush.cn:8800/sendmsg/sendmsg";
+//	public static final String PUSH_URL = "http://api.jpush.cn:8800/sendmsg/sendmsg";
+	public static final String PUSH_URL = "http://api.jpush.cn:8800/v2/push";
+	
+	 
 	
 	public static int pushMsg(String msg) {
 		BasicNameValuePair name = new BasicNameValuePair("username", EdjTools.pushusername);  //用户名
@@ -82,6 +82,7 @@ public class PushMsgUtil {
 
 		String username = EdjTools.pushusername;  //username 是开发者Portal帐户的登录帐户名
 		String password = EdjTools.pushpasswd;
+		String appsecret = EdjTools.AppSecret;
 //		int sendno = 3621;
 		int receiverType = 4;
 		String md5Password = StringUtils.toMD5(password);; //password 是开发者Portal帐户的登录密码
