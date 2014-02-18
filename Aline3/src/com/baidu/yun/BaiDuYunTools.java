@@ -1,9 +1,9 @@
 package com.baidu.yun;
 
-
 /***************************************************************************
  * 
  * Copyright (c) 2012 Baidu.com, Inc. All Rights Reserved
+ * 百度云 
  * 
  **************************************************************************/
 import java.io.File;
@@ -49,13 +49,13 @@ import com.baidu.inf.iis.bcs.request.PutSuperfileRequest;
 import com.baidu.inf.iis.bcs.response.BaiduBCSResponse;
 
 @SuppressWarnings("unused")
-public class Sample {
-	private static final Log log = LogFactory.getLog(Sample.class);
+public class BaiDuYunTools {
+	private static final Log log = LogFactory.getLog(BaiDuYunTools.class);
 	// ----------------------------------------
-	static String host = "bcs.duapp.com";
-	static String accessKey = "bildyElOQB7w2arTgj8mFS6Z";
-	static String secretKey = "GzCctPo70kHTcwI3LA5xg8CrPluOtx0e";
-	static String bucket = "firstsave";
+	public static String host = "bcs.duapp.com";
+	public static String accessKey = "bildyElOQB7w2arTgj8mFS6Z";
+	public static String secretKey = "GzCctPo70kHTcwI3LA5xg8CrPluOtx0e";
+	public static String bucket = "firstsave";
 	// ----------------------------------------
 	static String object = "/first-object";
 	static File destFile = new File("test");
@@ -65,7 +65,8 @@ public class Sample {
 	 * @throws URISyntaxException
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws URISyntaxException, IOException {
+	public static void main(String[] args) throws URISyntaxException,
+			IOException {
 		// TODO Auto-generated method stub
 		BCSCredentials credentials = new BCSCredentials(accessKey, secretKey);
 		BaiduBCS baiduBCS = new BaiduBCS(credentials, host);
@@ -81,30 +82,33 @@ public class Sample {
 			// putBucketPolicyByX_BS_ACL(baiduBCS, X_BS_ACL.PublicControl);
 			// listObject(baiduBCS);
 			// ------------object-------------
-			putObjectByFile(baiduBCS);
+			putObjectByFile(baiduBCS, createSampleFile1());
 			// putObjectByInputStream(baiduBCS);
 			// getObjectWithDestFile(baiduBCS);
 			// putSuperfile(baiduBCS);
 			// deleteObject(baiduBCS);
 			// getObjectMetadata(baiduBCS);
 			// setObjectMetadata(baiduBCS);
-//			 copyObject(baiduBCS, bucket, object + "_copy" +
-//			  (System.currentTimeMillis()));
-	  getObjectPolicy(baiduBCS);
+			// copyObject(baiduBCS, bucket, object + "_copy" +
+			// (System.currentTimeMillis()));
+//			getObjectPolicy(baiduBCS);
 			// putObjectPolicyByPolicy(baiduBCS);
 			// putObjectPolicyByX_BS_ACL(baiduBCS, X_BS_ACL.PublicControl);
 
 			// ------------common------------------
 			// generateUrl(BaiduBCS baiduBCS);
 		} catch (BCSServiceException e) {
-			log.warn("Bcs return:" + e.getBcsErrorCode() + ", " + e.getBcsErrorMessage() + ", RequestId=" + e.getRequestId());
+			log.warn("Bcs return:" + e.getBcsErrorCode() + ", "
+					+ e.getBcsErrorMessage() + ", RequestId="
+					+ e.getRequestId());
 		} catch (BCSClientException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void generateUrl(BaiduBCS baiduBCS) {
-		GenerateUrlRequest generateUrlRequest = new GenerateUrlRequest(HttpMethodName.GET, bucket, object);
+		GenerateUrlRequest generateUrlRequest = new GenerateUrlRequest(
+				HttpMethodName.GET, bucket, object);
 		generateUrlRequest.setBcsSignCondition(new BCSSignCondition());
 		generateUrlRequest.getBcsSignCondition().setIp("1.1.1.1");
 		generateUrlRequest.getBcsSignCondition().setTime(123455L);
@@ -112,17 +116,22 @@ public class Sample {
 		System.out.println(baiduBCS.generateUrl(generateUrlRequest));
 	}
 
-	public static void copyObject(BaiduBCS baiduBCS, String destBucket, String destObject) {
+	public static void copyObject(BaiduBCS baiduBCS, String destBucket,
+			String destObject) {
 		ObjectMetadata objectMetadata = new ObjectMetadata();
 		objectMetadata.setContentType("image/jpeg");
-		baiduBCS.copyObject(new Resource(bucket, object), new Resource(destBucket, destObject), objectMetadata);
-		baiduBCS.copyObject(new Resource(bucket, object), new Resource(destBucket, destObject), null);
-		baiduBCS.copyObject(new Resource(bucket, object), new Resource(destBucket, destObject));
+		baiduBCS.copyObject(new Resource(bucket, object), new Resource(
+				destBucket, destObject), objectMetadata);
+		baiduBCS.copyObject(new Resource(bucket, object), new Resource(
+				destBucket, destObject), null);
+		baiduBCS.copyObject(new Resource(bucket, object), new Resource(
+				destBucket, destObject));
 	}
 
 	private static void createBucket(BaiduBCS baiduBCS) {
 		// baiduBCS.createBucket(bucket);
-		baiduBCS.createBucket(new CreateBucketRequest(bucket, X_BS_ACL.PublicRead));
+		baiduBCS.createBucket(new CreateBucketRequest(bucket,
+				X_BS_ACL.PublicRead));
 	}
 
 	private static void deleteBucket(BaiduBCS baiduBCS) {
@@ -142,12 +151,14 @@ public class Sample {
 	}
 
 	public static void getObjectMetadata(BaiduBCS baiduBCS) {
-		ObjectMetadata objectMetadata = baiduBCS.getObjectMetadata(bucket, object).getResult();
+		ObjectMetadata objectMetadata = baiduBCS.getObjectMetadata(bucket,
+				object).getResult();
 		log.info(objectMetadata);
 	}
 
 	private static void getObjectPolicy(BaiduBCS baiduBCS) {
-		BaiduBCSResponse<Policy> response = baiduBCS.getObjectPolicy(bucket, object);
+		BaiduBCSResponse<Policy> response = baiduBCS.getObjectPolicy(bucket,
+				object);
 		log.info("After analyze: " + response.getResult().toJson());
 		log.info("Origianal str: " + response.getResult().getOriginalJsonStr());
 	}
@@ -159,7 +170,8 @@ public class Sample {
 
 	private static void listBucket(BaiduBCS baiduBCS) {
 		ListBucketRequest listBucketRequest = new ListBucketRequest();
-		BaiduBCSResponse<List<BucketSummary>> response = baiduBCS.listBucket(listBucketRequest);
+		BaiduBCSResponse<List<BucketSummary>> response = baiduBCS
+				.listBucket(listBucketRequest);
 		for (BucketSummary bucket : response.getResult()) {
 			log.info(bucket);
 		}
@@ -180,8 +192,10 @@ public class Sample {
 			// prefix must start with '/'
 			// listObjectRequest.setPrefix("/1/");
 		}
-		BaiduBCSResponse<ObjectListing> response = baiduBCS.listObject(listObjectRequest);
-		log.info("we get [" + response.getResult().getObjectSummaries().size() + "] object record.");
+		BaiduBCSResponse<ObjectListing> response = baiduBCS
+				.listObject(listObjectRequest);
+		log.info("we get [" + response.getResult().getObjectSummaries().size()
+				+ "] object record.");
 		for (ObjectSummary os : response.getResult().getObjectSummaries()) {
 			log.info(os.toString());
 		}
@@ -198,12 +212,13 @@ public class Sample {
 		baiduBCS.putBucketPolicy(bucket, policy);
 	}
 
-	private static void putBucketPolicyByX_BS_ACL(BaiduBCS baiduBCS, X_BS_ACL acl) {
+	private static void putBucketPolicyByX_BS_ACL(BaiduBCS baiduBCS,
+			X_BS_ACL acl) {
 		baiduBCS.putBucketPolicy(bucket, acl);
 	}
 
-	public static void putObjectByFile(BaiduBCS baiduBCS) {
-		PutObjectRequest request = new PutObjectRequest(bucket, object, createSampleFile());
+	public static void putObjectByFile(BaiduBCS baiduBCS, File file) {
+		PutObjectRequest request = new PutObjectRequest(bucket, object, file);
 		ObjectMetadata metadata = new ObjectMetadata();
 		// metadata.setContentType("text/html");
 		request.setMetadata(metadata);
@@ -213,13 +228,15 @@ public class Sample {
 		log.info(objectMetadata);
 	}
 
-	public static void putObjectByInputStream(BaiduBCS baiduBCS) throws FileNotFoundException {
-		File file = createSampleFile();
+	public static void putObjectByInputStream(BaiduBCS baiduBCS, File file)
+			throws FileNotFoundException {
+
 		InputStream fileContent = new FileInputStream(file);
 		ObjectMetadata objectMetadata = new ObjectMetadata();
 		objectMetadata.setContentType("text/html");
 		objectMetadata.setContentLength(file.length());
-		PutObjectRequest request = new PutObjectRequest(bucket, object, fileContent, objectMetadata);
+		PutObjectRequest request = new PutObjectRequest(bucket, object,
+				fileContent, objectMetadata);
 		ObjectMetadata result = baiduBCS.putObject(request).getResult();
 		log.info(result);
 	}
@@ -235,21 +252,28 @@ public class Sample {
 		baiduBCS.putObjectPolicy(bucket, object, policy);
 	}
 
-	private static void putObjectPolicyByX_BS_ACL(BaiduBCS baiduBCS, X_BS_ACL acl) {
+	private static void putObjectPolicyByX_BS_ACL(BaiduBCS baiduBCS,
+			X_BS_ACL acl) {
 		baiduBCS.putObjectPolicy(bucket, object, acl);
 	}
 
-	public static void putSuperfile(BaiduBCS baiduBCS) {
+	public static void putSuperfile(BaiduBCS baiduBCS, File file) {
 		List<SuperfileSubObject> subObjectList = new ArrayList<SuperfileSubObject>();
 		// 0
-		BaiduBCSResponse<ObjectMetadata> response1 = baiduBCS.putObject(bucket, object + "_part0", createSampleFile());
-		subObjectList.add(new SuperfileSubObject(bucket, object + "_part0", response1.getResult().getETag()));
+		BaiduBCSResponse<ObjectMetadata> response1 = baiduBCS.putObject(bucket,
+				object + "_part0", file);
+		subObjectList.add(new SuperfileSubObject(bucket, object + "_part0",
+				response1.getResult().getETag()));
 		// 1
-		BaiduBCSResponse<ObjectMetadata> response2 = baiduBCS.putObject(bucket, object + "_part1", createSampleFile());
-		subObjectList.add(new SuperfileSubObject(bucket, object + "_part1", response2.getResult().getETag()));
+		BaiduBCSResponse<ObjectMetadata> response2 = baiduBCS.putObject(bucket,
+				object + "_part1", file);
+		subObjectList.add(new SuperfileSubObject(bucket, object + "_part1",
+				response2.getResult().getETag()));
 		// put superfile
-		PutSuperfileRequest request = new PutSuperfileRequest(bucket, object + "_superfile", subObjectList);
-		BaiduBCSResponse<ObjectMetadata> response = baiduBCS.putSuperfile(request);
+		PutSuperfileRequest request = new PutSuperfileRequest(bucket, object
+				+ "_superfile", subObjectList);
+		BaiduBCSResponse<ObjectMetadata> response = baiduBCS
+				.putSuperfile(request);
 		ObjectMetadata objectMetadata = response.getResult();
 		log.info("x-bs-request-id: " + response.getRequestId());
 		log.info(objectMetadata);
@@ -261,7 +285,7 @@ public class Sample {
 		baiduBCS.setObjectMetadata(bucket, object, objectMetadata);
 	}
 
-	private static File createSampleFile() {
+	private static File createSampleFile1() {
 		try {
 			File file = File.createTempFile("java-sdk-", ".txt");
 			file.deleteOnExit();

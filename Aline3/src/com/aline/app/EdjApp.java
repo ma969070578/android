@@ -13,6 +13,9 @@ import cn.waps.AppConnect;
 
 import com.aline.util.EdjTools;
 import com.aline.util.MyUncaughtExceptionHandler;
+import com.baidu.inf.iis.bcs.BaiduBCS;
+import com.baidu.inf.iis.bcs.auth.BCSCredentials;
+import com.baidu.yun.BaiDuYunTools;
 
 public class EdjApp extends Application {
 
@@ -49,6 +52,9 @@ public class EdjApp extends Application {
 	
 	public String address;
 	
+	
+	public BaiduBCS baiduBCS =null;
+	
 	@Override
 	public void onCreate() {
 
@@ -61,7 +67,7 @@ public class EdjApp extends Application {
 		 Log.d(TAG, "onCreate");
          super.onCreate();
          JPushInterface.setDebugMode(true); 	//设置开启日志,发布时请关闭日志
-         JPushInterface.init(this);     		// 初始化 JPush
+//         JPushInterface.init(this);     		// 初始化 JPush
          
          
          
@@ -89,6 +95,17 @@ public class EdjApp extends Application {
 
  		 //sharesdk
  		 ShareSDK.initSDK(this);
+ 		 
+ 		 
+ 		 /**
+ 		  * 百度云
+ 		  * public BCSCredentials credentials =null;
+ 		  */
+ 		BCSCredentials credentials=new BCSCredentials(BaiDuYunTools.accessKey, BaiDuYunTools.secretKey);
+	    baiduBCS = new BaiduBCS(credentials, BaiDuYunTools.host);
+		// baiduBCS.setDefaultEncoding("GBK");
+		baiduBCS.setDefaultEncoding("UTF-8"); // Default UTF-8
+		
 
 	}
 
@@ -135,9 +152,9 @@ public class EdjApp extends Application {
 	
 	
 	private void myexcatch() {
-//		if(!EdjTools.isDebug)
-		Thread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandler(
-				EdjApp.this));
+// 		if(!EdjTools.isDebug)
+//		Thread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandler(
+//				EdjApp.this));
 		 
 	}
 }
