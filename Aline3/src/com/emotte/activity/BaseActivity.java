@@ -13,6 +13,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
+import cn.jpush.android.api.JPushInterface;
+
 import com.aline.activity.R;
 import com.aline.android.http.RequestParams;
 import com.aline.app.EdjApp;
@@ -102,6 +104,8 @@ public class BaseActivity extends Activity {
 		// startService(recordServerIntent);
 		// bindService(recordServerIntent, serviceConnection, BIND_AUTO_CREATE);
 		super.onStart();
+		
+		 JPushInterface.activityStarted(this);
 
 	}
 
@@ -113,6 +117,7 @@ public class BaseActivity extends Activity {
 		// unbindService(serviceConnection);
 		// }
 		super.onStop();
+		JPushInterface.activityStopped(this);
 	}
 
 	@Override
