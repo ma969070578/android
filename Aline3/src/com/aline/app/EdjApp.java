@@ -37,24 +37,22 @@ public class EdjApp extends Application {
 
 	public static EdjApp mApp;
 	public boolean isAutoUpate = false;
-	public boolean isLocation=false;
-	public boolean isStartCheckUpdata=false;
-	
-	
+	public boolean isLocation = false;
+	public boolean isStartCheckUpdata = false;
+
 	public String sysVersion;// 系统版本
 	public String mobileModel;// 设备名称
 	public String clientVersion; // 客户端版本
 	public String networkType;// 网络类型
-//	public String appkey;   
-	
+	// public String appkey;
+
 	public int glat;// google偏移后纬度
 	public int glon;// google偏移后经度
-	
+
 	public String address;
-	
-	
-	public BaiduBCS baiduBCS =null;
-	
+
+	public BaiduBCS baiduBCS = null;
+
 	@Override
 	public void onCreate() {
 
@@ -64,57 +62,50 @@ public class EdjApp extends Application {
 		// Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE);
 		// editor = prefs.edit();
 		// city = prefs.getString(Constants.DEFVALUE_CITY, "");
-		 Log.d(TAG, "onCreate");
-         super.onCreate();
-         JPushInterface.setDebugMode(true); 	//设置开启日志,发布时请关闭日志
-//         JPushInterface.init(this);     		// 初始化 JPush
-         
-         
-         
-         AppConnect.getInstance(this);	//必须确保AndroidManifest文件内配置了WAPS_ID
-//         开发者可通过代码开启错误报告功能，并通过管理后台的“错误报告”功能随时查看收集到的错误报告，以便及时进行修正。
-         AppConnect.getInstance(this).setCrashReport(true);//默认值true开启，设置false关闭
-         
-         //获取设备信息
-         EdjTools.getDevInfo(this);
-         
-         
-       //百度定位
-// 		BLocationStation.getInstance(this).registerLocationListener();
-// 		BLocationStation.getInstance(this).setFinish(new LocationFinish() {
-// 			
-// 			@Override
-// 			public void callBack(int state) {
-// 				// TODO Auto-generated method stub
-// 				SystemOut.out("location callback:"+"state="+state);
-// 			}
-// 		});
-// 		
-// 		BLocationStation.getInstance(this).startManager();
-// 		BLocationStation.getInstance(this).isLocallocation = true;
+		Log.d(TAG, "onCreate");
+		super.onCreate();
+		JPushInterface.setDebugMode(true); // 设置开启日志,发布时请关闭日志
+		JPushInterface.init(this); // 初始化 JPush
 
- 		 //sharesdk
- 		 ShareSDK.initSDK(this);
- 		 
- 		 
- 		 /**
- 		  * 百度云
- 		  * public BCSCredentials credentials =null;
- 		  */
- 		BCSCredentials credentials=new BCSCredentials(BaiDuYunTools.accessKey, BaiDuYunTools.secretKey);
-	    baiduBCS = new BaiduBCS(credentials, BaiDuYunTools.host);
+		AppConnect.getInstance(this); // 必须确保AndroidManifest文件内配置了WAPS_ID
+		// 开发者可通过代码开启错误报告功能，并通过管理后台的“错误报告”功能随时查看收集到的错误报告，以便及时进行修正。
+		AppConnect.getInstance(this).setCrashReport(true);// 默认值true开启，设置false关闭
+
+		// 获取设备信息
+		EdjTools.getDevInfo(this);
+
+		// 百度定位
+		// BLocationStation.getInstance(this).registerLocationListener();
+		// BLocationStation.getInstance(this).setFinish(new LocationFinish() {
+		//
+		// @Override
+		// public void callBack(int state) {
+		// // TODO Auto-generated method stub
+		// SystemOut.out("location callback:"+"state="+state);
+		// }
+		// });
+		//
+		// BLocationStation.getInstance(this).startManager();
+		// BLocationStation.getInstance(this).isLocallocation = true;
+
+		// sharesdk
+		ShareSDK.initSDK(this);
+
+		/**
+		 * 百度云 public BCSCredentials credentials =null;
+		 */
+		BCSCredentials credentials = new BCSCredentials(
+				BaiDuYunTools.accessKey, BaiDuYunTools.secretKey);
+		baiduBCS = new BaiduBCS(credentials, BaiDuYunTools.host);
 		// baiduBCS.setDefaultEncoding("GBK");
 		baiduBCS.setDefaultEncoding("UTF-8"); // Default UTF-8
-		
 
 	}
 
 	public static EdjApp getInstance() {
 		return mApp;
-	}	
-	
-	
-	
+	}
+
 	public static Stack<Activity> stackActivity;
 
 	public static void addActivity(Activity activity) {
@@ -141,20 +132,19 @@ public class EdjApp extends Application {
 	public static void finishOne(String clazzName) {
 		if (stackActivity != null) {
 			for (Activity activity : stackActivity) {
-				if (activity.getComponentName().getClassName().equals(clazzName)) {
+				if (activity.getComponentName().getClassName()
+						.equals(clazzName)) {
 					activity.finish();
 				}
 			}
 		}
 	}
-	
-	
-	
-	
+
 	private void myexcatch() {
-// 		if(!EdjTools.isDebug)
-//		Thread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandler(
-//				EdjApp.this));
-		 
+		// if(!EdjTools.isDebug)
+		// Thread.setDefaultUncaughtExceptionHandler(new
+		// MyUncaughtExceptionHandler(
+		// EdjApp.this));
+
 	}
 }

@@ -58,6 +58,8 @@ public class BaseActivity extends Activity {
 		}
 		// SystemOut.out("DeviceInfo:"+EdjTools.getDeviceInfo(this));
 
+		// JPushInterface.resumePush(getApplicationContext());
+
 	}
 
 	@Override
@@ -66,7 +68,7 @@ public class BaseActivity extends Activity {
 		EdjApp.popActivityRemove(this);
 
 		unregistReceiver();
-
+		unregisterNetCheckReceiver();
 		super.onDestroy();
 	}
 
@@ -76,7 +78,7 @@ public class BaseActivity extends Activity {
 		super.onPause();
 
 		MobclickAgent.onPause(this);
-
+		JPushInterface.onPause(this);
 	}
 
 	@Override
@@ -93,6 +95,9 @@ public class BaseActivity extends Activity {
 		registReceiver();
 		super.onResume();
 		MobclickAgent.onResume(this);
+
+		JPushInterface.onResume(this);
+
 	}
 
 	@Override
@@ -104,8 +109,6 @@ public class BaseActivity extends Activity {
 		// startService(recordServerIntent);
 		// bindService(recordServerIntent, serviceConnection, BIND_AUTO_CREATE);
 		super.onStart();
-		
-		 JPushInterface.activityStarted(this);
 
 	}
 
@@ -117,7 +120,7 @@ public class BaseActivity extends Activity {
 		// unbindService(serviceConnection);
 		// }
 		super.onStop();
-		JPushInterface.activityStopped(this);
+		// JPushInterface.stopPush(getApplicationContext());
 	}
 
 	@Override
@@ -135,6 +138,14 @@ public class BaseActivity extends Activity {
 
 			registerReceiver(netCheckReceiver, filter);
 		}
+	}
+
+	private void unregisterNetCheckReceiver() {
+		if (netCheckReceiver != null) {
+			unregisterReceiver(netCheckReceiver);
+			netCheckReceiver = null;
+		}
+
 	}
 
 	class NetCheckReceiver extends BroadcastReceiver {

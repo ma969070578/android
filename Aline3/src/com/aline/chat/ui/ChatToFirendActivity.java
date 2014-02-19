@@ -47,11 +47,13 @@ import android.widget.Toast;
 
 import com.aline.activity.R;
 import com.aline.util.EdjTools;
+import com.aline.util.Files;
 import com.aline.voice.util.MyRecorder;
 import com.baidu.yun.BaiDuYunTools;
 import com.emotte.activity.BaseActivity;
 
-public class ChatToFirendActivity extends BaseActivity implements OnClickListener{
+public class ChatToFirendActivity extends BaseActivity implements
+		OnClickListener {
 	private Context mCon;
 	private ViewPager viewPager;
 	private ArrayList<GridView> grids;
@@ -89,9 +91,7 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 			"2012-12-09 18:30", "2012-12-09 18:35", "2012-12-09 18:40",
 			"2012-12-09 18:50" };
 	private final static int COUNT = 8;
-	
-	
-	
+
 	/** 录音按钮 */
 	private Button recordBt;
 
@@ -112,14 +112,12 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 
 	/** 更新时间的线程 */
 	private Thread timeThread;
-	
-	/**更新进度条的线程*/
+
+	/** 更新进度条的线程 */
 	private Thread barThread;
 
 	/** 更新的语音图标 */
 	private ImageButton dialog_image;
-
-	 
 
 	private static int MAX_TIME = 0; // 最长录制时间，单位秒，0为无时间限制
 	private static int MIX_TIME = 1; // 最短录制时间，单位秒，0为无时间限制，建议设为1
@@ -180,10 +178,9 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 		biaoqingfocuseBtn.setOnClickListener(this);
 
 		mEditTextContent = (EditText) findViewById(R.id.et_sendmessage);
-		
+
 		recordBt = (Button) findViewById(R.id.btn_yuyin);
-		 
-		
+
 		// 录音按钮监听
 		recordBt.setOnTouchListener(new OnTouchListener() {
 
@@ -193,14 +190,14 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 				case MotionEvent.ACTION_DOWN:// 按下
 					// 如果当前不是正在录音状态，开始录音
 					if (RECODE_STATE != RECORD_ING) {
-						recorder = new MyRecorder(System.currentTimeMillis()+"");
+						recorder = new MyRecorder(System.currentTimeMillis()
+								+ "");
 						RECODE_STATE = RECORD_ING;
 						// 显示录音情况
 						showVoiceDialog();
 						// 开始录音
 						recorder.start();
-						
-				 
+
 						// 计时线程
 						myThread();
 					}
@@ -227,16 +224,21 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 							recordBt.setText("按住录音");
 							MediaPlayer player = new MediaPlayer();
 							File file = new File(Environment
-									.getExternalStorageDirectory(), "myvoice/"+System.currentTimeMillis()+".amr");
+									.getExternalStorageDirectory(), "myvoice/"
+									+ System.currentTimeMillis() + ".amr");
 							try {
 								player.setDataSource(file.getAbsolutePath());
-								
-								
-								System.out.println("file_path:"+file.getPath());
-								
-								//存储测试1
-								BaiDuYunTools.putObjectByFile(app.baiduBCS, file);
-								
+
+								System.out.println("file_path:"
+										+ file.getPath());
+
+								// 存储测试1
+								if (Files.ExistFile(file.getPath())) {
+									System.out.println("222222222222222");
+									BaiDuYunTools.putObjectByFile(app.baiduBCS,
+											file);
+								}
+
 							} catch (IllegalArgumentException e) {
 								e.printStackTrace();
 							} catch (SecurityException e) {
@@ -246,7 +248,7 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
-							System.out.println("录音时间：" + ((int)recodeTime));
+							System.out.println("录音时间：" + ((int) recodeTime));
 						}
 					}
 					break;
@@ -254,61 +256,61 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 				return false;
 			}
 		});
-//
-//		// 播放语音
-//		playBt.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View arg0) {
-//				// 如果不是正在播放
-//				if (!playState) {
-//					// 实例化MediaPlayer对象
-//					media = new MediaPlayer();
-//					File file = new File(Environment
-//							.getExternalStorageDirectory(), "myvoice/voice.amr");
-//					try {
-//						// 设置播放资源
-//						media.setDataSource(file.getAbsolutePath());
-//						// 准备播放
-//						media.prepare();
-//						// 开始播放
-//						media.start();
-//					 
-//						// 改变播放的标志位
-//						playState = true;
-//
-//						// 设置播放结束时监听
-//						media.setOnCompletionListener(new OnCompletionListener() {
-//
-//							@Override
-//							public void onCompletion(MediaPlayer mp) {
-//								if (playState) {
-//									playState = false;
-//								}
-//							}
-//						});
-//					} catch (IllegalArgumentException e) {
-//						e.printStackTrace();
-//					} catch (SecurityException e) {
-//						e.printStackTrace();
-//					} catch (IllegalStateException e) {
-//						e.printStackTrace();
-//					} catch (IOException e) {
-//						e.printStackTrace();
-//					}
-//				} else {
-//					// 如果正在播放
-//					if (media.isPlaying()) {
-//						media.stop();
-//						playState = false;
-//					} else {
-//						playState = false;
-//					}
-//
-//				}
-//			}
-//		}); 
-		
+		//
+		// // 播放语音
+		// playBt.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View arg0) {
+		// // 如果不是正在播放
+		// if (!playState) {
+		// // 实例化MediaPlayer对象
+		// media = new MediaPlayer();
+		// File file = new File(Environment
+		// .getExternalStorageDirectory(), "myvoice/voice.amr");
+		// try {
+		// // 设置播放资源
+		// media.setDataSource(file.getAbsolutePath());
+		// // 准备播放
+		// media.prepare();
+		// // 开始播放
+		// media.start();
+		//
+		// // 改变播放的标志位
+		// playState = true;
+		//
+		// // 设置播放结束时监听
+		// media.setOnCompletionListener(new OnCompletionListener() {
+		//
+		// @Override
+		// public void onCompletion(MediaPlayer mp) {
+		// if (playState) {
+		// playState = false;
+		// }
+		// }
+		// });
+		// } catch (IllegalArgumentException e) {
+		// e.printStackTrace();
+		// } catch (SecurityException e) {
+		// e.printStackTrace();
+		// } catch (IllegalStateException e) {
+		// e.printStackTrace();
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// } else {
+		// // 如果正在播放
+		// if (media.isPlaying()) {
+		// media.stop();
+		// playState = false;
+		// } else {
+		// playState = false;
+		// }
+		//
+		// }
+		// }
+		// });
+
 		initViewPager();
 		initData();
 	}
@@ -472,7 +474,7 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 			biaoqingfocuseBtn.setVisibility(biaoqingfocuseBtn.VISIBLE);
 			viewPager.setVisibility(viewPager.VISIBLE);
 			page_select.setVisibility(page_select.VISIBLE);
-			
+
 			break;
 		case R.id.chatting_biaoqing_focuse_btn:
 			biaoqingBtn.setVisibility(biaoqingBtn.VISIBLE);
@@ -480,8 +482,7 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 			viewPager.setVisibility(viewPager.GONE);
 			page_select.setVisibility(page_select.GONE);
 			break;
-			
-			
+
 		}
 
 	}
@@ -602,9 +603,8 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 			}
 		}
 	}
-	
-	
-	//***************************
+
+	// ***************************
 
 	/** 显示正在录音的图标 */
 	private void showVoiceDialog() {
@@ -647,44 +647,42 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 
 	// 录音Dialog图片随声音大小切换
 	void setDialogImage() {
-	
-		if(EdjTools.isDebug)
-		Toast.makeText(ChatToFirendActivity.this, "voiceValue:"+voiceValue, Toast.LENGTH_SHORT).show();
-		
+
+		if (EdjTools.isDebug)
+			Toast.makeText(ChatToFirendActivity.this,
+					"voiceValue:" + voiceValue, Toast.LENGTH_SHORT).show();
+
 		if (voiceValue < 200.0) {
 			dialog_image.setImageResource(R.drawable.record_animate_01);
-		}else if (voiceValue > 200.0 && voiceValue < 400) {
+		} else if (voiceValue > 200.0 && voiceValue < 400) {
 			dialog_image.setImageResource(R.drawable.record_animate_02);
-		}else if (voiceValue > 400.0 && voiceValue < 800) {
+		} else if (voiceValue > 400.0 && voiceValue < 800) {
 			dialog_image.setImageResource(R.drawable.record_animate_03);
-		}else if (voiceValue > 800.0 && voiceValue < 1600) {
+		} else if (voiceValue > 800.0 && voiceValue < 1600) {
 			dialog_image.setImageResource(R.drawable.record_animate_04);
-		}else if (voiceValue > 1600.0 && voiceValue < 3200) {
+		} else if (voiceValue > 1600.0 && voiceValue < 3200) {
 			dialog_image.setImageResource(R.drawable.record_animate_05);
-		}else if (voiceValue > 3200.0 && voiceValue < 5000) {
+		} else if (voiceValue > 3200.0 && voiceValue < 5000) {
 			dialog_image.setImageResource(R.drawable.record_animate_06);
-		}else if (voiceValue > 5000.0 && voiceValue < 7000) {
+		} else if (voiceValue > 5000.0 && voiceValue < 7000) {
 			dialog_image.setImageResource(R.drawable.record_animate_07);
-		}else if (voiceValue > 7000.0 && voiceValue < 10000.0) {
+		} else if (voiceValue > 7000.0 && voiceValue < 10000.0) {
 			dialog_image.setImageResource(R.drawable.record_animate_08);
-		}else if (voiceValue > 10000.0 && voiceValue < 14000.0) {
+		} else if (voiceValue > 10000.0 && voiceValue < 14000.0) {
 			dialog_image.setImageResource(R.drawable.record_animate_09);
-		}else if (voiceValue > 14000.0 && voiceValue < 17000.0) {
+		} else if (voiceValue > 14000.0 && voiceValue < 17000.0) {
 			dialog_image.setImageResource(R.drawable.record_animate_10);
-		}else if (voiceValue > 17000.0 && voiceValue < 20000.0) {
+		} else if (voiceValue > 17000.0 && voiceValue < 20000.0) {
 			dialog_image.setImageResource(R.drawable.record_animate_11);
-		}else if (voiceValue > 20000.0 && voiceValue < 24000.0) {
+		} else if (voiceValue > 20000.0 && voiceValue < 24000.0) {
 			dialog_image.setImageResource(R.drawable.record_animate_12);
-		}else if (voiceValue > 24000.0 && voiceValue < 28000.0) {
+		} else if (voiceValue > 24000.0 && voiceValue < 28000.0) {
 			dialog_image.setImageResource(R.drawable.record_animate_13);
-		}else if (voiceValue > 28000.0) {
+		} else if (voiceValue > 28000.0) {
 			dialog_image.setImageResource(R.drawable.record_animate_14);
 		}
 	}
-	
- 
-	
-	
+
 	/** 录音计时线程 */
 	private void myThread() {
 		timeThread = new Thread(ImageThread);
@@ -743,14 +741,13 @@ public class ChatToFirendActivity extends BaseActivity implements OnClickListene
 						} else {
 							recordBt.setText("按住录音");
 							System.out.println("录音时间:" + ((int) recodeTime));
-							
-							
+
 						}
 					}
 					break;
 
 				case 0x11:
-					 
+
 					recordBt.setText("正在录音");
 					setDialogImage();
 					break;
