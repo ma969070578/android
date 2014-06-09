@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android" android:paddingLeft="10dp" 
+	android:paddingRight="10dp"
+	android:layout_height="fill_parent" android:orientation="vertical">
+    
+	<TextView android:layout_width="fill_parent" android:id="@+id/dialogtitle"
+		android:layout_height="wrap_content"   
+		style="@android:style/TextAppearance.Medium.Inverse" android:textColor="@android:color/white" ></TextView>
+	
+	<!-- <TextView android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"  android:text="更新列表:"
+		style="@android:style/TextAppearance.Medium.Inverse" android:textColor="@android:color/white" android:layout_marginTop="10dp"  ></TextView>
+	
+	<TextView android:layout_width="fill_parent" android:id="@+id/dialogtext" 
+		android:layout_height="wrap_content" 
+		style="@android:style/TextAppearance.Medium.Inverse"  android:textColor="@android:color/white" android:layout_marginTop="10dp" ></TextView> -->
+	
+	<!--  <LinearLayout android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:gravity="center" android:paddingTop="3dip"
+		android:background="@drawable/android:bottom_bar">
+		<Button android:layout_height="wrap_content" android:text="确定" 
+			android:layout_marginLeft="10dip" android:id="@+id/AboutCompanyButton" android:layout_width="fill_parent" android:layout_weight="0.5"></Button>
+		<Button android:layout_height="wrap_content" android:layout_marginRight="10dip" android:id="@+id/CancelButton" android:layout_weight="0.5" android:layout_width="fill_parent" android:text="取消" ></Button>
+	</LinearLayout> -->
+ -
+</LinearLayout>

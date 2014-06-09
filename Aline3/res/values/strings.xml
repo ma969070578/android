@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Aline!</string>
+    <string name="app_name">一线牵</string>
+    <string name="tag_hint">Tag为大小写字母，数字，下划线,中文， 多个用以逗号分隔</string>
+    <string name="alias_hint">Alias为大小写字母，数字，下划线</string>
+    <string name="style_hint">style为数字</string>
+    <string name="error_style_empty">style不能为空</string>
+    <string name="error_alias_empty">alias不能为空</string>
+    <string name="error_tag_empty">tag不能为空</string>
+    <string name="error_tag_gs_empty">格式不对</string>
+    <string name="error_network">网络连接异常,初始化失败 请检查网络！</string>
+    <string name="logining">程序在后台执行, 请查看日志！</string>
+    <string name="setting_su">设置成功</string>
+    
+   <string name="title">一线牵</string>
+    <string name="myMap_quit">退出地图</string>
+    <string name="myMap_about">关于地图</string>
+    <string name="ok">确定</string>
+    <string name="cancle">取消</string>
+
+    
+      <string name="referesh">刷新</string>
+    <string name="search">搜索</string>
+    <string name="myinfo">我的资料</string>
+    
+        <string name="main_home">首页</string>
+    <string name="main_news">信息</string>
+    <string name="main_my_info">我的资料</string>
+    <string name="menu_search">搜索</string>
+    <string name="more">更多</string>
+    <string name="quit">退出</string>
+    <string name="infos">关于</string>
+      <string name="submit">提交</string>
+    
+    
+    <string name="back">返回</string>
+    <string name="portal">重新定位</string>
+    <string name="tologin">重新登录</string>
+    <string name="tologout">注销</string>
+    <string name="refresh">刷新</string> 
+    
+    
+    
+    <string name="user_name">姓名</string>
+    <string name="user_imei">我的IMEI</string>
+    <string name="user_card">二维码</string>
+    <string name="user_sex">性别</string>
+     <string name="user_address">地区</string>
+    
+    <string name="getaddress">获取位置</string>
+    <string name="updatadialog_title">系统更新</string>
+    <string name="updata_ok">立即更新</string>
+    <string name="updata_cannel">下次再说</string>
+    
+    
+    <string name="howuse">使用指南</string>
+     <string name="feedback">意见反馈</string>
+    <string name="checkupdate">检查更新</string>
+    <string name="aboutus">关于我们</string>
+    <string name="apprecommend">推荐应用</string>
+    <string name="feedbackcommont">请在此输入您的宝贵建议！</string>
+    <string name="thankcommont">提交成功，感谢您的反馈，我们会尽快处理！</string>
+    <string name="main_more">更多</string>
+    <string name="yourname">请填写您的姓名</string>
+    <string name="yourphone">请填写您的手机号</string>
+    <string name="youremail">请填写您的常用邮箱</string>
+    <string name="writeyouremail">您所反映问题的处理结果将及时发送到此邮箱</string>
+    <string name="writeyourfeedback">清晰详细的描述有助于快速解决您的问题</string>
+    <string name="thankfor">您的意见将帮助我们改进产品和服务</string>
+    <string name="textmore">还可以输入200个字</string>
+    <string name="recentuse">最近浏览记录</string>
+    <string name="caresinablog">关注新浪微博</string>
+    <string name="caresinablog95081">关注95081新浪微博</string>
+    <string name="sendtofriends">发送给好友</string>
+    
+     <string name="update">update.jsp</string>
+    <string name="revision">1.00</string>
+    
+    <string name="introduce">
+       \n一线牵是由某某出品的用于某某的一个某某功能的软件
+       \n一线牵能够***************
+       \n关爱家人 ，关心你我 </string>
+    
+    <string name="show_web">网址：</string>
+    <string name="web">www.baidu.com</string>
+     <string name="show_email">邮箱：</string>
+    <string name="email">ma969070578@126.com</string>
+    <string name="showblog">新浪微博：</string>
+    <string name="blog"> http://weibo.com/1661932913</string>
+     <string name="sms">一线牵，心系你我，心系万千,下载地址****</string>
+     
+         <string name="location_fail">获取地理信息失败</string>
+    <string name="location_fail_show_default_info">获取地理信息失败,显示默认代驾信息</string>
+    <string name="unsupport_network_location">您的系统不支持网络定位</string>
+    
+        <string name="net_err">网络异常，请检查网络设置</string>
+
+</resources>
