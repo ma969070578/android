@@ -115,7 +115,7 @@ public class MainActivity extends Activity {
 	private List<ServiceInfo> getDataSource1() {
 		success_list.clear();
 		
-		success_list=SharedPreTools.readAllObjectPre(Constants.SUCCESS_DATA);
+		success_list=SharedPreTools.readAllServicePre(Constants.SUCCESS_DATA);
 	
 		return success_list;
 
@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
 	private List<ServiceInfo> getDataSource0() {
 		fail_list.clear();
 		
-		fail_list=SharedPreTools.readAllObjectPre(Constants.FAIL_DATA);
+		fail_list=SharedPreTools.readAllServicePre(Constants.FAIL_DATA);
 	
 		return fail_list;
 
@@ -134,7 +134,7 @@ public class MainActivity extends Activity {
 	private List<ServiceInfo> getDataSource2() {
 		nouser_list.clear();
 		
-		nouser_list=SharedPreTools.readAllObjectPre(Constants.NOUSER_DATA);
+		nouser_list=SharedPreTools.readAllServicePre(Constants.NOUSER_DATA);
 	
 		return nouser_list;
 

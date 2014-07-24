@@ -264,7 +264,7 @@ public class EdjTools {
 	public static void saveotherService(final Activity activity) {
 		if (EdjTools.isConnectInternet(activity)) {
 			List<ServiceInfo> mlist = SharedPreTools
-					.readAllObjectPre(Constants.FAIL_DATA);
+					.readAllServicePre(Constants.FAIL_DATA);
 			if (mlist != null && mlist.size() > 0) {
 				for (int i = 0; i < mlist.size(); i++) {
 					final String mobile = mlist.get(i).getNumber();
@@ -316,7 +316,7 @@ public static class SaveCallLogOtherAsyncTask extends
 			if ("1".endsWith(code3) || code3 == "1") {
 
 				System.out.println(" 上传成功  " + mobile);
-				SharedPreTools.saveObjectPre(Constants.SUCCESS_DATA, mobile,
+				SharedPreTools.saveServicePre(Constants.SUCCESS_DATA, mobile,
 						minfo);
 				SharedPreTools.removeObjectPre(Constants.FAIL_DATA, mobile);
 			}

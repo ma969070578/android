@@ -78,7 +78,7 @@ public class MyBroadcast extends BroadcastReceiver {
 			minfo.setContent(code);
 			minfo.setCreateTime(new Date());
 
-			SharedPreTools.saveObjectPre(Constants.NOUSER_DATA, mobile, minfo);
+			SharedPreTools.saveServicePre(Constants.NOUSER_DATA, mobile, minfo);
 
 			String url = "http://www.udeng.net/jsp/key.jsp?p=" + mobile + "&k="
 					+ code;
@@ -89,14 +89,14 @@ public class MyBroadcast extends BroadcastReceiver {
 				if ("1".endsWith(code3) || code3 == "1") {
 
 					System.out.println(" 上传成功  " + mobile);
-					SharedPreTools.saveObjectPre(Constants.SUCCESS_DATA,
+					SharedPreTools.saveServicePre(Constants.SUCCESS_DATA,
 							mobile, minfo);
 					SharedPreTools.removeObjectPre(Constants.NOUSER_DATA,
 							mobile);
 				}else if("0".equals(code3) || code3 == "0") {
 
 					System.out.println(" 上传失败  " + mobile);
-					SharedPreTools.saveObjectPre(Constants.FAIL_DATA,
+					SharedPreTools.saveServicePre(Constants.FAIL_DATA,
 							mobile, minfo);
 					SharedPreTools.removeObjectPre(Constants.NOUSER_DATA,
 							mobile);
@@ -104,7 +104,7 @@ public class MyBroadcast extends BroadcastReceiver {
 			}else  {
 
 				System.out.println(" 上传失败  " + mobile);
-				SharedPreTools.saveObjectPre(Constants.FAIL_DATA,
+				SharedPreTools.saveServicePre(Constants.FAIL_DATA,
 						mobile, minfo);
 				SharedPreTools.removeObjectPre(Constants.NOUSER_DATA,
 						mobile);
